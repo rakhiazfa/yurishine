@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
+            $table->foreignId('patient_id')->unique()->constrained('patients')->cascadeOnDelete();
             $table->unsignedBigInteger('balance')->default(0);
             $table->timestamps();
         });

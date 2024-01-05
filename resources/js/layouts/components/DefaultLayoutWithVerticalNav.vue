@@ -111,6 +111,14 @@ import UserProfile from "@/layouts/components/UserProfile.vue";
 
             <VerticalNavLink
                 :item="{
+                    title: 'Membership',
+                    icon: 'bx-credit-card',
+                    to: '/memberships',
+                }"
+            />
+
+            <VerticalNavLink
+                :item="{
                     title: 'Laporan',
                     icon: 'bx-file',
                     to: '/reports',

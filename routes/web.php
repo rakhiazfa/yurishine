@@ -7,6 +7,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PolyclinicController;
 use App\Http\Controllers\ReportController;
@@ -61,4 +62,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('/reports', ReportController::class, [
         'except' => ['create', 'store', 'show', 'edit', 'update', 'destroy'],
     ]);
+
+    Route::resource('/memberships', MembershipController::class, [
+        'except' => ['create', 'show', 'edit', 'update'],
+    ]);
+
+    Route::patch('/memberships/{membership}/add-balance', [
+        MembershipController::class,
+        'addBalance'
+    ])->name('memberships.add-balance');
+
+    Route::patch('/memberships/{membership}/use-balance', [
+        MembershipController::class,
+        'useBalance'
+    ])->name('memberships.use-balance');
 });

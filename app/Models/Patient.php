@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Patient extends Model
 {
@@ -23,6 +24,11 @@ class Patient extends Model
         'phone',
         'user_id',
     ];
+
+    public function membership(): HasOne
+    {
+        return $this->hasOne(Membership::class, 'patient_id');
+    }
 
     public static function generateRegistrasionNumber(): string
     {
