@@ -12,16 +12,7 @@ const props = defineProps({
         type: String,
         required: true,
     },
-    change: {
-        type: Number,
-        required: true,
-    },
 });
-
-const isPositive = controlledComputed(
-    () => props.change,
-    () => Math.sign(props.change) === 1
-);
 </script>
 
 <template>
