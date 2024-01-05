@@ -37,7 +37,7 @@ class DoctorController extends Controller
             $query->where($column, 'LIKE', "%{$keyword}%");
         }
 
-        $doctors = $query->get();
+        $doctors = $query->paginate(10)->withQueryString();
 
         return Inertia::render('doctors/Index', [
             'doctors' => $doctors,

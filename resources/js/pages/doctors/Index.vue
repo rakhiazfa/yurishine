@@ -2,6 +2,7 @@
 import { Head, Link, router } from "@inertiajs/vue3";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Layout from "@/layouts/Default.vue";
+import Pagination from "@/components/Pagination.vue";
 import { reactive } from "vue";
 
 const formFilter = reactive({
@@ -52,7 +53,7 @@ const search = () => {
     );
 };
 
-defineProps({ doctors: Array });
+defineProps({ doctors: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -102,7 +103,7 @@ defineOptions({ layout: Layout });
                 </el-form-item>
             </el-form>
 
-            <el-table :data="doctors" class="w-auto" border stripe>
+            <el-table :data="doctors.data" class="w-auto mb-5" border stripe>
                 <el-table-column type="index" label="No" width="50px" />
                 <el-table-column prop="name" label="Nama" width="180px" />
                 <el-table-column
@@ -141,6 +142,7 @@ defineOptions({ layout: Layout });
                     </template>
                 </el-table-column>
             </el-table>
+            <Pagination :links="doctors.links" />
         </el-card>
     </div>
 </template>
