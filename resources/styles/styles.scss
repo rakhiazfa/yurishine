@@ -1,0 +1,83 @@
+a {
+    color: inherit;
+}
+
+.v-field__input {
+    color: #475569 !important;
+}
+
+button, [type='button'], [type='reset'], [type='submit'] {
+    /* background-color: transparent; */
+    background-image: none;
+}
+
+.el-table .cell {
+    word-break: break-word;
+    font-size: 0.75rem;
+}
+.el-button--primary {
+    --el-button-text-color: var(--el-color-primary);
+    --el-button-bg-color: var(--el-color-primary);
+    --el-button-border-color: var(--el-color-primary);
+    --el-button-outline-color: var(--el-color-primary-light-5);
+    --el-button-active-color: var(--el-color-primary-dark-2);
+    --el-button-hover-text-color: var(--el-color-white);
+    --el-button-hover-link-text-color: var(--el-color-primary-light-5);
+    --el-button-hover-bg-color: var(--el-color-primary-light-3);
+    --el-button-hover-border-color: var(--el-color-primary-light-3);
+    --el-button-active-bg-color: var(--el-color-primary-dark-2);
+    --el-button-active-border-color: var(--el-color-primary-dark-2);
+    --el-button-disabled-text-color: var(--el-color-white);
+    --el-button-disabled-bg-color: var(--el-color-primary-light-5);
+    --el-button-disabled-border-color: var(--el-color-primary-light-5);
+}
+.el-form-item__label {
+    font-size: 0.875rem;
+}
+.el-descriptions__cell {
+    font-size: 0.8rem !important;
+}
+
+.ck-editor {
+    min-width: 100%;
+}
+.ck-editor ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.ck-editor ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+.ck-editor h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.ck-editor h2 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.ck-editor__editable {
+    min-width: 100%;
+    min-height: 250px;
+}
+
+.ck-editor-result {
+    padding: 1rem 0 !important;
+}
+.ck-editor-result ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.ck-editor-result ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+.ck-editor-result h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.ck-editor-result h2 {
+    font-size: 1rem;
+    font-weight: 600;
+}
