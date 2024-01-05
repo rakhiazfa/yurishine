@@ -22,5 +22,7 @@ class PatientSeeder extends Seeder
             'address' => 'Jl. Kresna No. 24-42c, Kel. Durman, Kec. Andir',
             'phone' => '082482429401',
         ]);
+
+        Patient::factory()->count(150)->create();
     }
 }

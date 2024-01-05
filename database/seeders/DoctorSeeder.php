@@ -20,5 +20,7 @@ class DoctorSeeder extends Seeder
             'phone' => '081221773164',
             'user_id' => User::factory()->create()->id,
         ]);
+
+        Doctor::factory()->count(15)->create();
     }
 }
