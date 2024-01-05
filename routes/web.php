@@ -9,6 +9,7 @@ use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PolyclinicController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,4 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/treatments', TreatmentController::class);
 
     Route::resource('/medical-records', MedicalRecordController::class);
+
+    Route::resource('/reports', ReportController::class, [
+        'except' => ['create', 'store', 'show', 'edit', 'update', 'destroy'],
+    ]);
 });
