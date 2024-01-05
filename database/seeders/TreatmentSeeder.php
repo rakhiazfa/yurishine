@@ -22,5 +22,7 @@ class TreatmentSeeder extends Seeder
             'name' => 'Facial Premium',
             'price' => 175000,
         ]);
+
+        Treatment::factory()->count(150)->create();
     }
 }

@@ -29,7 +29,7 @@ class TreatmentController extends Controller
             $query->where($column, 'LIKE', "%{$keyword}%");
         }
 
-        $treatments = $query->get();
+        $treatments = $query->paginate(10)->withQueryString();
 
         return Inertia::render('treatments/Index', [
             'treatments' => $treatments,

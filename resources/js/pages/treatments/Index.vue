@@ -2,6 +2,7 @@
 import { Head, Link, router } from "@inertiajs/vue3";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Layout from "@/layouts/Default.vue";
+import Pagination from "@/components/Pagination.vue";
 import { reactive } from "vue";
 import currency from "../../helpers/currency";
 
@@ -101,7 +102,7 @@ defineOptions({ layout: Layout });
                 </el-form-item>
             </el-form>
 
-            <el-table :data="treatments" class="w-auto" border stripe>
+            <el-table :data="treatments.data" class="w-auto" border stripe>
                 <el-table-column type="index" label="No" width="50px" />
                 <el-table-column prop="name" label="Nama" width="180px" />
                 <el-table-column label="Deskripsi" min-width="350px">
@@ -133,6 +134,9 @@ defineOptions({ layout: Layout });
                     </template>
                 </el-table-column>
             </el-table>
+            <div class="mt-5">
+                <Pagination :links="treatments.links" />
+            </div>
         </el-card>
     </div>
 </template>

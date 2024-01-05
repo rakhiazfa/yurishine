@@ -81,7 +81,7 @@ defineOptions({ layout: Layout });
                     ></div>
                 </el-descriptions-item>
                 <el-descriptions-item label="Treatment Yang Diberikan">
-                    <div class="flex items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-3">
                         <Link
                             v-for="treatment in medicalRecord?.treatments"
                             :key="treatment.id"

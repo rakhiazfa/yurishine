@@ -16,10 +16,6 @@ const form = useForm({
     treatments: [],
 });
 
-const handleSelectionChange = (items) => {
-    form.treatments = items.map((item) => item.id);
-};
-
 const handleSubmit = () => {
     form.post("/medical-records", {
         onSuccess: () => {
@@ -91,26 +87,22 @@ defineOptions({ layout: Layout });
                     label="Treatment Yang Diberikan"
                     :error="form.errors.treatments"
                 >
-                    <el-table
-                        ref="multipleTableRef"
-                        :data="treatments"
-                        class="w-auto"
-                        @selection-change="handleSelectionChange"
-                        border
-                        stripe
+                    <el-select
+                        v-model="form.treatments"
+                        class="w-full"
+                        multiple
+                        filterable
+                        clearable
                     >
-                        <el-table-column type="selection" width="55" />
-                        <el-table-column
-                            prop="name"
-                            label="Nama"
-                            width="180px"
+                        <el-option
+                            v-for="treatment in treatments"
+                            :key="treatment.id"
+                            :value="treatment.id"
+                            :label="`${treatment.name} - ${currency.format(
+                                treatment.price
+                            )}`"
                         />
-                        <el-table-column label="Harga" width="150px">
-                            <template #default="scope">
-                                <p>{{ currency.format(scope.row.price) }}</p>
-                            </template>
-                        </el-table-column>
-                    </el-table>
+                    </el-select>
                 </el-form-item>
                 <div class="flex justify-end">
                     <el-button size="small" @click="handleSubmit">

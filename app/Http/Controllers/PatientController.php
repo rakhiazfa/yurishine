@@ -34,7 +34,7 @@ class PatientController extends Controller
             $query->where($column, 'LIKE', "%{$keyword}%");
         }
 
-        $patients = $query->get();
+        $patients = $query->paginate(10)->withQueryString();
 
         return Inertia::render('patients/Index', [
             'patients' => $patients,

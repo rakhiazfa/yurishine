@@ -4,7 +4,6 @@ import { ElMessage } from "element-plus";
 import Layout from "@/layouts/Default.vue";
 import TextEditor from "@/components/TextEditor.vue";
 import currency from "@/helpers/currency";
-import { onMounted } from "vue";
 
 const props = defineProps({
     medicalRecord: Object,
@@ -19,12 +18,10 @@ const form = useForm({
     doctor_id: props.medicalRecord?.doctor_id,
     polyclinic_id: props.medicalRecord?.polyclinic_id,
     description: props.medicalRecord?.description,
-    treatments: props.medicalRecord?.treatments,
+    treatments: props.medicalRecord?.treatments?.map(
+        (treatment) => treatment.id
+    ),
 });
-
-const handleSelectionChange = (items) => {
-    form.treatments = items.map((item) => item.id);
-};
 
 const handleSubmit = () => {
     form.put(`/medical-records/${props.medicalRecord.id}`, {
@@ -36,15 +33,6 @@ const handleSubmit = () => {
         },
     });
 };
-
-onMounted(() => {
-    form.treatments.forEach((item) => {
-        multipleTableRef.value.toggleRowSelection(
-            props.treatments.find((medicine) => medicine.id === item.id),
-            undefined
-        );
-    });
-});
 
 defineOptions({ layout: Layout });
 </script>
@@ -101,27 +89,26 @@ defineOptions({ layout: Layout });
                 >
                     <TextEditor v-model="form.description" />
                 </el-form-item>
-                <el-form-item label="Obat" :error="form.errors.treatments">
-                    <el-table
-                        ref="multipleTableRef"
-                        :data="treatments"
-                        class="w-auto"
-                        @selection-change="handleSelectionChange"
-                        border
-                        stripe
+                <el-form-item
+                    label="Treatment Yang Diberikan"
+                    :error="form.errors.treatments"
+                >
+                    <el-select
+                        v-model="form.treatments"
+                        class="w-full"
+                        multiple
+                        filterable
+                        clearable
                     >
-                        <el-table-column type="selection" width="55" />
-                        <el-table-column
-                            prop="name"
-                            label="Nama"
-                            width="180px"
+                        <el-option
+                            v-for="treatment in treatments"
+                            :key="treatment.id"
+                            :value="treatment.id"
+                            :label="`${treatment.name} - ${currency.format(
+                                treatment.price
+                            )}`"
                         />
-                        <el-table-column label="Harga" width="150px">
-                            <template #default="scope">
-                                <p>{{ currency.format(scope.row.price) }}</p>
-                            </template>
-                        </el-table-column>
-                    </el-table>
+                    </el-select>
                 </el-form-item>
                 <div class="flex justify-end">
                     <el-button size="small" @click="handleSubmit">

@@ -2,6 +2,7 @@
 import { Head, Link, router } from "@inertiajs/vue3";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Layout from "@/layouts/Default.vue";
+import Pagination from "@/components/Pagination.vue";
 import { reactive } from "vue";
 
 const formFilter = reactive({
@@ -137,7 +138,7 @@ defineOptions({ layout: Layout });
                 </el-form-item>
             </el-form>
 
-            <el-table :data="patients" class="w-auto" border stripe>
+            <el-table :data="patients.data" class="w-auto" border stripe>
                 <el-table-column type="index" label="No" width="50px" />
                 <el-table-column
                     prop="registrasion_number"
@@ -185,6 +186,9 @@ defineOptions({ layout: Layout });
                     </template>
                 </el-table-column>
             </el-table>
+            <div class="mt-5">
+                <Pagination :links="patients.links" />
+            </div>
         </el-card>
     </div>
 </template>

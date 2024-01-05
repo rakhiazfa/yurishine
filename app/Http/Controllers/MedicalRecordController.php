@@ -34,7 +34,7 @@ class MedicalRecordController extends Controller
                 });
         }
 
-        $medicalRecords = $query->get();
+        $medicalRecords = $query->paginate(10)->withQueryString();
 
         return Inertia::render('medical-records/Index', [
             'medicalRecords' => $medicalRecords,
