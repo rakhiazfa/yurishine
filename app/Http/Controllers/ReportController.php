@@ -11,9 +11,21 @@ class ReportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $reports = Report::latest()->get();
+        $keyword = $request->query('keyword');
+
+        $query = Report::latest();
+
+        if ($keyword) {
+            $query->where('patient_name', 'LIKE', "%{$keyword}%")
+                ->orWhere('patient_address', 'LIKE', "%{$keyword}%")
+                ->orWhere('patient_phone', 'LIKE', "%{$keyword}%")
+                ->orWhere('doctor_name', 'LIKE', "%{$keyword}%")
+                ->orWhere('polyclinic_name', 'LIKE', "%{$keyword}%");
+        }
+
+        $reports = $query->get();
 
         return Inertia::render('reports/Index', [
             'reports' => $reports,
