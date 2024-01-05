@@ -27,9 +27,9 @@ defineOptions({ layout: Layout });
 
         <CardStatisticsVertical
             v-bind="{
-                title: 'Total Obat',
+                title: 'Total Treatment',
                 image: chart,
-                stats: entityCounts.totalMedicine,
+                stats: entityCounts.totalTreatment,
             }"
         />
 

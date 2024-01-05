@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use App\Models\MedicalRecord;
-use App\Models\Medicine;
 use App\Models\Patient;
 use App\Models\Polyclinic;
+use App\Models\Treatment;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $totalDoctor = Doctor::count();
         $totalPatient = Patient::count();
-        $totalMedicine = Medicine::count();
+        $totalTreatment = Treatment::count();
         $totalPolyclinic = Polyclinic::count();
         $totalMedicalRecord = MedicalRecord::count();
 
@@ -23,7 +23,7 @@ class DashboardController extends Controller
             'entityCounts' => [
                 'totalDoctor' => $totalDoctor,
                 'totalPatient' => $totalPatient,
-                'totalMedicine' => $totalMedicine,
+                'totalTreatment' => $totalTreatment,
                 'totalPolyclinic' => $totalPolyclinic,
                 'totalMedicalRecord' => $totalMedicalRecord,
             ]
