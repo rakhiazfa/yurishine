@@ -13,7 +13,7 @@ defineOptions({ layout: Layout });
             v-bind="{
                 title: 'Total Dokter',
                 image: chart,
-                stats: entityCounts.totalDoctor,
+                stats: entityCounts.totalDoctor.toString(),
             }"
         />
 
@@ -21,7 +21,7 @@ defineOptions({ layout: Layout });
             v-bind="{
                 title: 'Total Pasien',
                 image: chart,
-                stats: entityCounts.totalPatient,
+                stats: entityCounts.totalPatient.toString(),
             }"
         />
 
@@ -29,7 +29,7 @@ defineOptions({ layout: Layout });
             v-bind="{
                 title: 'Total Treatment',
                 image: chart,
-                stats: entityCounts.totalTreatment,
+                stats: entityCounts.totalTreatment.toString(),
             }"
         />
 
@@ -37,7 +37,7 @@ defineOptions({ layout: Layout });
             v-bind="{
                 title: 'Total Poliklinik',
                 image: chart,
-                stats: entityCounts.totalPolyclinic,
+                stats: entityCounts.totalPolyclinic.toString(),
             }"
         />
 
@@ -45,7 +45,7 @@ defineOptions({ layout: Layout });
             v-bind="{
                 title: 'Total Rekam Medis',
                 image: chart,
-                stats: entityCounts.totalMedicalRecord,
+                stats: entityCounts.totalMedicalRecord.toString(),
             }"
         />
     </div>
