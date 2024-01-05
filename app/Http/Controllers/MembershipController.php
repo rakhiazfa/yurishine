@@ -13,10 +13,32 @@ class MembershipController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $memberships = Membership::with('patient')->latest()->get();
+        $column = $request->query('column');
+        $keyword = $request->query('keyword');
+
         $patients = Patient::doesntHave('membership')->latest()->get();
+
+        $query = Membership::with('patient')->latest();
+
+        if (!$column) {
+            $query->whereHas('patient', function ($query) use ($keyword) {
+                $query->where('registrasion_number', 'LIKE', "%{$keyword}%")
+                    ->orWhere('name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('age', 'LIKE', "%{$keyword}%")
+                    ->orWhere('gender', 'LIKE', "%{$keyword}%")
+                    ->orWhere('skin_type', 'LIKE', "%{$keyword}%")
+                    ->orWhere('address', 'LIKE', "%{$keyword}%")
+                    ->orWhere('phone', 'LIKE', "%{$keyword}%");
+            });
+        } else {
+            $query->whereHas('patient', function ($query) use ($column, $keyword) {
+                $query->where($column, 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        $memberships = $query->get();
 
         return Inertia::render('memberships/Index', [
             'memberships' => $memberships,
