@@ -88,6 +88,7 @@ defineOptions({ layout: Layout });
                             <el-option value="name" label="Nama" />
                             <el-option value="age" label="Umur" />
                             <el-option value="gender" label="Jenis Kelamin" />
+                            <el-option value="skin_type" label="Jenis Kulit" />
                             <el-option value="address" label="Alamat" />
                             <el-option value="phone" label="Nomor Telepon" />
                         </el-select>
@@ -108,6 +109,19 @@ defineOptions({ layout: Layout });
                         >
                             <el-option value="Pria" label="Pria" />
                             <el-option value="Wanita" label="Wanita" />
+                        </el-select>
+                        <el-select
+                            v-else-if="formFilter.column === 'skin_type'"
+                            v-model="formFilter.keyword"
+                            placeholder="Pilih jenis kulit"
+                            filterable
+                            clearable
+                        >
+                            <el-option value="Normal" label="Normal" />
+                            <el-option value="Oily" label="Oily" />
+                            <el-option value="Dry" label="Dry" />
+                            <el-option value="Acne" label="Acne" />
+                            <el-option value="Kombinasi" label="Kombinasi" />
                         </el-select>
                         <el-input
                             v-else
@@ -135,6 +149,11 @@ defineOptions({ layout: Layout });
                 <el-table-column
                     prop="gender"
                     label="Jenis Kelamin"
+                    width="100px"
+                />
+                <el-table-column
+                    prop="skin_type"
+                    label="Jenis Kulit"
                     width="100px"
                 />
                 <el-table-column
