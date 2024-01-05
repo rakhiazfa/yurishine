@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class PatientController extends Controller
@@ -53,6 +54,9 @@ class PatientController extends Controller
      */
     public function store(CreatePatientRequest $request)
     {
+        Cache::forget('patient_options');
+        Cache::forget('patient_doesnt_have_options');
+
         Patient::create($request->all());
 
         return to_route('patients.index');
@@ -83,6 +87,9 @@ class PatientController extends Controller
      */
     public function update(UpdatePatientRequest $request, Patient $patient)
     {
+        Cache::forget('patient_options');
+        Cache::forget('patient_doesnt_have_options');
+
         $name = $request->input('name');
         $age = $request->input('age');
         $gender = $request->input('gender');
@@ -107,6 +114,9 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
+        Cache::forget('patient_options');
+        Cache::forget('patient_doesnt_have_options');
+
         $patient->delete();
 
         return to_route('patients.index');

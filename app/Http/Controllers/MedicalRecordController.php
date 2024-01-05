@@ -11,6 +11,7 @@ use App\Models\Patient;
 use App\Models\Report;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class MedicalRecordController extends Controller
@@ -45,15 +46,19 @@ class MedicalRecordController extends Controller
      */
     public function create()
     {
-        $patients = Patient::latest()->get();
-        $doctors = Doctor::latest()->get();
-        $medicines = Medicine::latest()->get();
-        $treatments = Treatment::latest()->get();
+        $patients = Cache::remember('patient_options', 2 * 60 * 60, function () {
+            return Patient::latest()->get();
+        });
+        $doctors = Cache::remember('doctor_options', 2 * 60 * 60, function () {
+            return Doctor::latest()->get();
+        });
+        $treatments = Cache::remember('treatment_options', 2 * 60, function () {
+            return Treatment::latest()->get();
+        });
 
         return Inertia::render('medical-records/Create', [
             'patients' => $patients,
             'doctors' => $doctors,
-            'medicines' => $medicines,
             'treatments' => $treatments,
         ]);
     }
@@ -103,16 +108,20 @@ class MedicalRecordController extends Controller
     {
         $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'medicines', 'treatments']);
 
-        $patients = Patient::latest()->get();
-        $doctors = Doctor::latest()->get();
-        $medicines = Medicine::latest()->get();
-        $treatments = Treatment::latest()->get();
+        $patients = Cache::remember('patient_options', 2 * 60 * 60, function () {
+            return Patient::latest()->get();
+        });
+        $doctors = Cache::remember('doctor_options', 2 * 60 * 60, function () {
+            return Doctor::latest()->get();
+        });
+        $treatments = Cache::remember('treatment_options', 2 * 60, function () {
+            return Treatment::latest()->get();
+        });
 
         return Inertia::render('medical-records/Edit', [
             'medicalRecord' => $medicalRecord,
             'patients' => $patients,
             'doctors' => $doctors,
-            'medicines' => $medicines,
             'treatments' => $treatments,
         ]);
     }

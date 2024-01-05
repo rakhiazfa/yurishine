@@ -6,6 +6,7 @@ use App\Http\Requests\CreateMembershipRequest;
 use App\Models\Membership;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class MembershipController extends Controller
@@ -18,7 +19,9 @@ class MembershipController extends Controller
         $column = $request->query('column');
         $keyword = $request->query('keyword');
 
-        $patients = Patient::doesntHave('membership')->latest()->get();
+        $patients = Cache::remember('patient_doesnt_have_options', 2 * 60 * 60, function () {
+            return Patient::doesntHave('membership')->latest()->get();
+        });
 
         $query = Membership::with('patient')->latest();
 

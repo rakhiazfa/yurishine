@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class DoctorController extends Controller
@@ -56,6 +57,8 @@ class DoctorController extends Controller
      */
     public function store(CreateDoctorRequest $request)
     {
+        Cache::forget('doctor_options');
+
         $user = User::create($request->all());
         $doctor = new Doctor($request->all());
 
@@ -94,6 +97,8 @@ class DoctorController extends Controller
      */
     public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
+        Cache::forget('doctor_options');
+
         $name = $request->input('name');
         $specialist = $request->input('specialist');
         $address = $request->input('address');
@@ -122,6 +127,8 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
+        Cache::forget('doctor_options');
+
         $doctor->user->delete();
         $doctor->delete();
 
