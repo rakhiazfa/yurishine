@@ -8,6 +8,7 @@ use App\Models\Doctor;
 use App\Models\MedicalRecord;
 use App\Models\Medicine;
 use App\Models\Patient;
+use App\Models\Report;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -68,6 +69,17 @@ class MedicalRecordController extends Controller
         $medicalRecord = MedicalRecord::create($request->all());
         $medicalRecord->medicines()->sync($medicines);
         $medicalRecord->treatments()->sync($treatments);
+
+        Report::create([
+            'patient_name' => $medicalRecord->patient->name,
+            'patient_address' => $medicalRecord->patient->address,
+            'patient_phone' => $medicalRecord->patient->phone,
+            'doctor_name' => $medicalRecord->doctor->name,
+            'polyclinic_name' => $medicalRecord->polyclinic?->name ?? null,
+            'description' => $medicalRecord->description,
+            'treatments' => $medicalRecord->treatments,
+            'inspection_date' => $medicalRecord->created_at,
+        ]);
 
         return to_route('medical-records.index');
     }
