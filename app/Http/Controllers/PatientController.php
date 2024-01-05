@@ -22,7 +22,8 @@ class PatientController extends Controller
         $query = Patient::latest();
 
         if (!$column) {
-            $query->where('name', 'LIKE', "%{$keyword}%")
+            $query->where('registrasion_number', 'LIKE', "%{$keyword}%")
+                ->orWhere('name', 'LIKE', "%{$keyword}%")
                 ->orWhere('age', 'LIKE', "%{$keyword}%")
                 ->orWhere('gender', 'LIKE', "%{$keyword}%")
                 ->orWhere('skin_type', 'LIKE', "%{$keyword}%")
