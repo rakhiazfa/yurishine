@@ -34,10 +34,6 @@ const deleteMedicine = (id) => {
         .catch(() => {});
 };
 
-const changeFilterColumn = () => {
-    formFilter.keyword = null;
-};
-
 const search = () => {
     router.get(
         "/medical-records",
