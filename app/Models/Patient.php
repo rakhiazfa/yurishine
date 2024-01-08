@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Patient extends Model
@@ -35,5 +36,10 @@ class Patient extends Model
         $end = str_pad(self::count() + 1, 5, '0', STR_PAD_LEFT);
 
         return '7210' . now()->format('dmy') . $end;
+    }
+
+    public function medicalRecords(): HasMany
+    {
+        return $this->hasMany(MedicalRecord::class, 'patient_id');
     }
 }

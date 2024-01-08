@@ -67,8 +67,11 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
+        $medicalRecords = $patient->medicalRecords()->with(['doctor', 'treatments'])->paginate(15);
+
         return Inertia::render('patients/Show', [
             'patient' => $patient,
+            'medicalRecords' => $medicalRecords,
         ]);
     }
 
