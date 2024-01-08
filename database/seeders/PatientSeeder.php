@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Patient;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PatientSeeder extends Seeder

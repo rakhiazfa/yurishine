@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Treatment;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TreatmentSeeder extends Seeder
@@ -23,6 +22,29 @@ class TreatmentSeeder extends Seeder
             'price' => 175000,
         ]);
 
-        Treatment::factory()->count(150)->create();
+        Treatment::create([
+            'name' => 'Totok Wajah',
+            'price' => 175000,
+        ]);
+
+        Treatment::create([
+            'name' => 'Suntik Botox',
+            'price' => 175000,
+        ]);
+
+        Treatment::create([
+            'name' => 'Mesoterapi',
+            'price' => 175000,
+        ]);
+
+        Treatment::create([
+            'name' => 'Microdermabrasi',
+            'price' => 175000,
+        ]);
+
+        Treatment::create([
+            'name' => 'Peeling Kimia',
+            'price' => 175000,
+        ]);
     }
 }
