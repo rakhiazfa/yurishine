@@ -317,7 +317,10 @@ defineOptions({ layout: Layout });
                     Tambah Membership
                 </h4>
             </template>
-            <el-form label-position="top">
+            <el-form
+                label-position="top"
+                @submit.prevent="handleCreateMembership"
+            >
                 <el-form-item label="Pasien" :error="form.errors.patient_id">
                     <el-select
                         v-model="form.patient_id"
@@ -360,7 +363,7 @@ defineOptions({ layout: Layout });
                     Tambah Saldo
                 </h4>
             </template>
-            <el-form label-position="top">
+            <el-form label-position="top" @submit.prevent="handleAddBalance">
                 <el-form-item
                     label="Jumlah Saldo"
                     :error="formAddBalance.errors.payload"
@@ -391,7 +394,7 @@ defineOptions({ layout: Layout });
                     Gunakan Saldo
                 </h4>
             </template>
-            <el-form label-position="top">
+            <el-form label-position="top" @submit.prevent="handleUseBalance">
                 <el-form-item
                     label="Jumlah Saldo"
                     :error="formUseBalance.errors.payload"
