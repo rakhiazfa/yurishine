@@ -21,6 +21,6 @@ class DoctorSeeder extends Seeder
             'user_id' => User::factory()->create()->id,
         ]);
 
-        Doctor::factory()->count(30)->create();
+        Doctor::factory()->count(4)->create();
     }
 }
