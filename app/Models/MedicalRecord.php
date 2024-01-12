@@ -37,11 +37,6 @@ class MedicalRecord extends Model
         return $this->belongsTo(Polyclinic::class, 'polyclinic_id');
     }
 
-    public function medicines(): BelongsToMany
-    {
-        return $this->belongsToMany(Medicine::class, 'medical_record_has_medicines', 'medical_record_id', 'medicine_id');
-    }
-
     public function treatments(): BelongsToMany
     {
         return $this->belongsToMany(Treatment::class, 'medical_record_has_treatments', 'medical_record_id', 'treatment_id');

@@ -10,6 +10,7 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PolyclinicController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SkincareController;
 use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/patients', PatientController::class);
 
     Route::resource('/treatments', TreatmentController::class);
+
+    Route::resource('/skincares', SkincareController::class);
 
     Route::resource('/medical-records', MedicalRecordController::class);
 
