@@ -14,8 +14,8 @@ class CreateDoctorRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nip' => ['required', 'unique:doctors'],
             'name' => ['required'],
-            'specialist' => ['required'],
             'address' => ['required'],
             'phone' => ['required', 'numeric'],
             'email' => ['required', 'email', 'unique:users'],

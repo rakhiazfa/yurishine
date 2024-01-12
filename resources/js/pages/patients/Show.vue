@@ -21,13 +21,13 @@ defineOptions({ layout: Layout });
             </div>
 
             <el-descriptions class="margin-top" :column="1" border>
-                <el-descriptions-item label-class-name="w-[200px]">
+                <el-descriptions-item label-class-name="w-[250px]">
                     <template #label> Nama </template>
                     {{ patient?.name ?? "-" }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Umur </template>
-                    {{ patient?.age ?? "-" }}
+                    {{ patient?.age ? patient?.age + " Tahun" : "-" }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Jenis Kelamin </template>
@@ -44,6 +44,28 @@ defineOptions({ layout: Layout });
                 <el-descriptions-item>
                     <template #label> Nomor Telepon </template>
                     {{ patient?.phone ?? "-" }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label> Merokok </template>
+                    <el-tag>{{ patient?.is_smoked ? "Ya" : "Tidak" }}</el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label> Menggunakan KB </template>
+                    {{ patient?.using_kb ?? "-" }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label> Sedang Menggunakan Skincare? </template>
+                    <el-tag>{{
+                        patient?.using_skincare ? "Ya" : "Tidak"
+                    }}</el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label>
+                        Pernah Menggunakan Cream Racik?
+                    </template>
+                    <el-tag>{{
+                        patient?.already_use_mixed_cream ? "Ya" : "Tidak"
+                    }}</el-tag>
                 </el-descriptions-item>
             </el-descriptions>
         </el-card>

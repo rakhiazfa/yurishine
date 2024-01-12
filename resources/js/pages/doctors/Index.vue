@@ -83,7 +83,7 @@ defineOptions({ layout: Layout });
                         >
                             <el-option value="" label="Semua" />
                             <el-option value="name" label="Nama" />
-                            <el-option value="specialist" label="Spesialis" />
+                            <el-option value="nip" label="NIP" />
                             <el-option value="address" label="Alamat" />
                             <el-option value="phone" label="Nomor Telepon" />
                             <el-option value="email" label="Email" />
@@ -105,17 +105,16 @@ defineOptions({ layout: Layout });
 
             <el-table :data="doctors.data" class="w-auto" border stripe>
                 <el-table-column type="index" label="No" width="50px" />
-                <el-table-column prop="name" label="Nama" width="180px" />
-                <el-table-column
-                    prop="specialist"
-                    label="Spesialis"
-                    width="180px"
-                />
-                <el-table-column
-                    prop="address"
-                    label="Alamat"
-                    min-width="350px"
-                />
+                <el-table-column label="Nama" width="180px">
+                    <template #default="scope">
+                        <Link
+                            :href="`/doctors/${scope.row.id}`"
+                            class="text-blue-500 hover:underline"
+                            >{{ scope.row.name ?? "-" }}</Link
+                        >
+                    </template>
+                </el-table-column>
+                <el-table-column prop="nip" label="NIP" width="180px" />
                 <el-table-column label="Nomor Telepon" width="200px">
                     <template #default="scope">
                         <p>{{ scope.row.phone ?? "-" }}</p>
@@ -126,9 +125,12 @@ defineOptions({ layout: Layout });
                         <p>{{ scope.row.user?.email }}</p>
                     </template>
                 </el-table-column>
-                <el-table-column label="#" width="150px">
+                <el-table-column label="#" width="250px">
                     <template #default="scope">
                         <div class="flex justify-center items-center gap-3">
+                            <Link :href="`/doctors/${scope.row.id}`">
+                                <el-button size="small">Detail</el-button>
+                            </Link>
                             <Link :href="`/doctors/${scope.row.id}/edit`">
                                 <el-button size="small">Edit</el-button>
                             </Link>

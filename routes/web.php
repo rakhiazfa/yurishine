@@ -6,7 +6,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalRecordController;
-use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PolyclinicController;
@@ -52,8 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/doctors', DoctorController::class);
 
     Route::resource('/patients', PatientController::class);
-
-    Route::resource('/medicines', MedicineController::class);
 
     Route::resource('/treatments', TreatmentController::class);
 

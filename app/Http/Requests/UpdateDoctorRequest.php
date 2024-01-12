@@ -16,8 +16,8 @@ class UpdateDoctorRequest extends FormRequest
         $doctor = $this->route('doctor');
 
         return [
+            'nip' => ['required', 'unique:doctors,nip,' . $doctor->id],
             'name' => ['required'],
-            'specialist' => ['required'],
             'address' => ['required'],
             'phone' => ['required', 'numeric'],
             'email' => ['required', 'email', 'unique:users,email,' . $doctor->user->id],

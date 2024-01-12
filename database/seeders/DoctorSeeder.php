@@ -14,8 +14,8 @@ class DoctorSeeder extends Seeder
     public function run(): void
     {
         Doctor::create([
+            'nip' => fake()->uuid(),
             'name' => 'Dr. Nida Farida, SpKK',
-            'specialist' => 'Kecantikan',
             'address' => 'Jl. Margahayu No. 24-42c, Kel. Mekar Galih, Kec. Bandung Selatan',
             'phone' => '081221773164',
             'user_id' => User::factory()->create()->id,

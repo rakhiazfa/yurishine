@@ -104,16 +104,6 @@ defineOptions({ layout: Layout });
                         </Link>
                     </template>
                 </el-table-column>
-                <el-table-column label="Poliklinik" min-width="180px">
-                    <template #default="scope">
-                        <Link
-                            :href="`/polyclinics/${scope.row.polyclinic?.id}`"
-                            class="text-blue-500 hover:underline"
-                        >
-                            {{ scope.row.polyclinic?.name ?? "-" }}
-                        </Link>
-                    </template>
-                </el-table-column>
                 <el-table-column label="Tanggal Pemeriksaan" min-width="180px">
                     <template #default="scope">
                         <p>{{ formatDate(scope.row.inspection_date) }}</p>

@@ -19,13 +19,13 @@ defineOptions({ layout: Layout });
             </div>
 
             <el-descriptions class="margin-top" :column="1" border>
+                <el-descriptions-item>
+                    <template #label> NIP </template>
+                    {{ doctor?.nip ?? "-" }}
+                </el-descriptions-item>
                 <el-descriptions-item label-class-name="w-[200px]">
                     <template #label> Nama </template>
-                    {{ doctor?.name ?? "-" }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                    <template #label> Spesialis </template>
-                    {{ doctor?.specialist ?? "-" }}
+                    <span class="font-semibold">{{ doctor?.name ?? "-" }}</span>
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Alamat </template>

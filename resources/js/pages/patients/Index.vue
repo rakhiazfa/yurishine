@@ -145,7 +145,15 @@ defineOptions({ layout: Layout });
                     label="Nomor Induk"
                     width="200px"
                 />
-                <el-table-column prop="name" label="Nama" width="180px" />
+                <el-table-column label="Nama" width="180px">
+                    <template #default="scope">
+                        <Link
+                            :href="`/patients/${scope.row.id}`"
+                            class="text-blue-500 hover:underline"
+                            >{{ scope.row.name ?? "-" }}</Link
+                        >
+                    </template>
+                </el-table-column>
                 <el-table-column prop="age" label="Umur" width="75px" />
                 <el-table-column
                     prop="gender"
@@ -157,11 +165,13 @@ defineOptions({ layout: Layout });
                     label="Jenis Kulit"
                     width="100px"
                 />
-                <el-table-column
-                    prop="address"
-                    label="Alamat"
-                    min-width="350px"
-                />
+                <el-table-column label="Merokok" width="200px">
+                    <template #default="scope">
+                        <el-tag>{{
+                            scope.row.is_smoked ? "Ya" : "Tidak"
+                        }}</el-tag>
+                    </template>
+                </el-table-column>
                 <el-table-column label="Nomor Telepon" width="200px">
                     <template #default="scope">
                         <p>{{ scope.row.phone ?? "-" }}</p>

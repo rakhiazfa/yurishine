@@ -21,6 +21,10 @@ class UpdatePatientRequest extends FormRequest
             'skin_type' => ['required'],
             'address' => ['required'],
             'phone' => ['required', 'numeric'],
+            'is_smoked' => ['required', 'boolean'],
+            'using_kb' => ['required'],
+            'using_skincare' => ['required', 'boolean'],
+            'already_use_mixed_cream' => ['required', 'boolean'],
         ];
     }
 }

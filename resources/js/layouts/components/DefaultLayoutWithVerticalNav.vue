@@ -41,21 +41,52 @@ import UserProfile from "@/layouts/components/UserProfile.vue";
         </template>
 
         <template #vertical-nav-content>
-            <VerticalNavLink
-                :item="{
-                    title: 'Dashboard',
-                    icon: 'bx-home',
-                    to: '/dashboard',
-                }"
-            />
+            <div class="pb-10">
+                <VerticalNavLink
+                    :item="{
+                        title: 'Dashboard',
+                        icon: 'bx-home',
+                        to: '/dashboard',
+                    }"
+                />
 
-            <VerticalNavSectionTitle
-                :item="{
-                    heading: 'MASTER DATA',
-                }"
-            />
+                <VerticalNavSectionTitle
+                    :item="{
+                        heading: 'LAINNYA',
+                    }"
+                />
 
-            <!-- <VerticalNavLink
+                <VerticalNavLink
+                    :item="{
+                        title: 'Rekam Medis',
+                        icon: 'bx-book',
+                        to: '/medical-records',
+                    }"
+                />
+
+                <VerticalNavLink
+                    :item="{
+                        title: 'Membership',
+                        icon: 'bx-credit-card',
+                        to: '/memberships',
+                    }"
+                />
+
+                <VerticalNavLink
+                    :item="{
+                        title: 'Laporan',
+                        icon: 'bx-file',
+                        to: '/reports',
+                    }"
+                />
+
+                <VerticalNavSectionTitle
+                    :item="{
+                        heading: 'MASTER DATA',
+                    }"
+                />
+
+                <!-- <VerticalNavLink
                 :item="{
                     title: 'Data Poliklinik',
                     icon: 'bx-buildings',
@@ -63,67 +94,38 @@ import UserProfile from "@/layouts/components/UserProfile.vue";
                 }"
             /> -->
 
-            <VerticalNavLink
-                :item="{
-                    title: 'Data Dokter',
-                    icon: 'bx-user-pin',
-                    to: '/doctors',
-                }"
-            />
+                <VerticalNavLink
+                    :item="{
+                        title: 'Data Dokter',
+                        icon: 'bx-user-pin',
+                        to: '/doctors',
+                    }"
+                />
 
-            <VerticalNavLink
-                :item="{
-                    title: 'Data Pasien',
-                    icon: 'bx-user',
-                    to: '/patients',
-                }"
-            />
+                <VerticalNavLink
+                    :item="{
+                        title: 'Data Pasien',
+                        icon: 'bx-user',
+                        to: '/patients',
+                    }"
+                />
 
-            <VerticalNavLink
-                :item="{
-                    title: 'Data Obat',
-                    icon: 'bx-capsule',
-                    to: '/medicines',
-                }"
-            />
+                <VerticalNavLink
+                    :item="{
+                        title: 'Data Skincare',
+                        icon: 'bx-capsule',
+                        to: '/skincares',
+                    }"
+                />
 
-            <VerticalNavLink
-                :item="{
-                    title: 'Data Treatment',
-                    icon: 'bx-face',
-                    to: '/treatments',
-                }"
-            />
-
-            <VerticalNavSectionTitle
-                :item="{
-                    heading: 'LAINNYA',
-                }"
-            />
-
-            <VerticalNavLink
-                :item="{
-                    title: 'Rekam Medis',
-                    icon: 'bx-book',
-                    to: '/medical-records',
-                }"
-            />
-
-            <VerticalNavLink
-                :item="{
-                    title: 'Membership',
-                    icon: 'bx-credit-card',
-                    to: '/memberships',
-                }"
-            />
-
-            <VerticalNavLink
-                :item="{
-                    title: 'Laporan',
-                    icon: 'bx-file',
-                    to: '/reports',
-                }"
-            />
+                <VerticalNavLink
+                    :item="{
+                        title: 'Data Treatment',
+                        icon: 'bx-face',
+                        to: '/treatments',
+                    }"
+                />
+            </div>
         </template>
 
         <slot />

@@ -99,6 +99,10 @@ class PatientController extends Controller
         $skinType = $request->input('skin_type');
         $address = $request->input('address');
         $phone = $request->input('phone');
+        $isSmoked = $request->input('is_smoked');
+        $usingKB = $request->input('using_kb');
+        $usingSkincare = $request->input('using_skincare');
+        $alreadyUseMixedCream = $request->input('already_use_mixed_cream');
 
         $patient->name = $name;
         $patient->age = $age;
@@ -106,6 +110,10 @@ class PatientController extends Controller
         $patient->skin_type = $skinType;
         $patient->address = $address;
         $patient->phone = $phone;
+        $patient->is_smoked = $isSmoked;
+        $patient->using_kb = $usingKB;
+        $patient->using_skincare = $usingSkincare;
+        $patient->already_use_mixed_cream = $alreadyUseMixedCream;
 
         $patient->save();
 

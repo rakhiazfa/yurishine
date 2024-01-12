@@ -12,6 +12,8 @@ const form = useForm({
     skin_type: props.patient?.skin_type,
     address: props.patient?.address,
     phone: props.patient?.phone,
+    is_smoked: props.patient?.is_smoked?.toString(),
+    using_kb: props.patient?.using_kb,
 });
 
 const handleSubmit = () => {
@@ -73,6 +75,18 @@ defineOptions({ layout: Layout });
                 </el-form-item>
                 <el-form-item label="Nomor Telepon" :error="form.errors.phone">
                     <el-input v-model="form.phone" />
+                </el-form-item>
+                <el-form-item label="Merokok" :error="form.errors.is_smoked">
+                    <el-radio-group v-model="form.is_smoked" class="ml-4">
+                        <el-radio label="1" size="large">Ya</el-radio>
+                        <el-radio label="0" size="large">Tidak</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item
+                    label="Menggunakan KB"
+                    :error="form.errors.using_kb"
+                >
+                    <el-input v-model="form.using_kb" type="textarea" />
                 </el-form-item>
                 <div class="flex justify-end">
                     <el-button size="small" @click="handleSubmit">

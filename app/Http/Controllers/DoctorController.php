@@ -24,7 +24,7 @@ class DoctorController extends Controller
 
         if (!$column) {
             $query->where('name', 'LIKE', "%{$keyword}%")
-                ->orWhere('specialist', 'LIKE', "%{$keyword}%")
+                ->orWhere('nip', 'LIKE', "%{$keyword}%")
                 ->orWhere('address', 'LIKE', "%{$keyword}%")
                 ->orWhereHas('user', function ($query) use ($keyword) {
                     $query->where('email', 'LIKE', "%{$keyword}%");
@@ -100,14 +100,14 @@ class DoctorController extends Controller
         Cache::forget('doctor_options');
 
         $name = $request->input('name');
-        $specialist = $request->input('specialist');
+        $nip = $request->input('nip');
         $address = $request->input('address');
         $phone = $request->input('phone');
         $email = $request->input('email');
         $password = $request->input('password');
 
         $doctor->name = $name;
-        $doctor->specialist = $specialist;
+        $doctor->nip = $nip;
         $doctor->address = $address;
         $doctor->phone = $phone;
         $doctor->user->name = $name;

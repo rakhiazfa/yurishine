@@ -23,6 +23,10 @@ class Patient extends Model
         'skin_type',
         'address',
         'phone',
+        'is_smoked',
+        'using_kb',
+        'using_skincare',
+        'already_use_mixed_cream',
         'user_id',
     ];
 

@@ -5,7 +5,7 @@ import Layout from "@/layouts/Default.vue";
 
 const form = useForm({
     name: "",
-    specialist: "",
+    nip: "",
     address: "",
     phone: "",
     email: "",
@@ -45,8 +45,8 @@ defineOptions({ layout: Layout });
                 <el-form-item label="Nama" :error="form.errors.name">
                     <el-input v-model="form.name" />
                 </el-form-item>
-                <el-form-item label="Spesialis" :error="form.errors.specialist">
-                    <el-input v-model="form.specialist" />
+                <el-form-item label="NIP" :error="form.errors.nip">
+                    <el-input v-model="form.nip" />
                 </el-form-item>
                 <el-form-item label="Alamat" :error="form.errors.address">
                     <el-input v-model="form.address" type="textarea" />

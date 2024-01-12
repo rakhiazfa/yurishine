@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('skin_type');
             $table->text('address');
             $table->string('phone')->nullable();
+            $table->boolean('is_smoked');
+            $table->string('using_kb');
+            $table->boolean('using_skincare');
+            $table->boolean('already_use_mixed_cream');
             $table->timestamps();
         });
     }

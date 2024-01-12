@@ -7,7 +7,7 @@ const props = defineProps({ doctor: Object });
 
 const form = useForm({
     name: props.doctor?.name,
-    specialist: props.doctor?.specialist,
+    nip: props.doctor?.nip,
     address: props.doctor?.address,
     phone: props.doctor?.phone,
     email: props.doctor?.user?.email,
@@ -47,8 +47,8 @@ defineOptions({ layout: Layout });
                 <el-form-item label="Nama" :error="form.errors.name">
                     <el-input v-model="form.name" />
                 </el-form-item>
-                <el-form-item label="Spesialis" :error="form.errors.specialist">
-                    <el-input v-model="form.specialist" />
+                <el-form-item label="NIP" :error="form.errors.nip">
+                    <el-input v-model="form.nip" />
                 </el-form-item>
                 <el-form-item label="Alamat" :error="form.errors.address">
                     <el-input v-model="form.address" type="textarea" />
