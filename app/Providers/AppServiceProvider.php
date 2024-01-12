@@ -6,6 +6,7 @@ use App\Models\MedicalRecord;
 use App\Models\Patient;
 use App\Observers\MedicalRecordObserver;
 use App\Observers\PatientObserver;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -30,5 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share([
             'urlPrevious' => url()->previous(),
         ]);
+
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
     }
 }

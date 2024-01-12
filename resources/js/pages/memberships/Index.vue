@@ -247,40 +247,48 @@ defineOptions({ layout: Layout });
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5 mt-5"
             >
                 <div v-for="membership in memberships" :key="membership.id">
-                    <el-card class="relative w-[300px] h-[175px] rounded-md">
-                        <div class="flex justify-between items-start gap-5">
-                            <h1 class="text-[#785189] font-semibold uppercase">
-                                Member Card
-                            </h1>
-                            <img
-                                :src="logo"
-                                alt="Yurishine"
-                                class="w-[32.5%] mb-7"
-                            />
-                        </div>
+                    <Link :href="`/patients/${membership.patient.id}`">
+                        <el-card
+                            class="relative w-[300px] h-[175px] rounded-md"
+                        >
+                            <div class="flex justify-between items-start gap-5">
+                                <h1
+                                    class="text-[#785189] font-semibold uppercase"
+                                >
+                                    Member Card
+                                </h1>
+                                <img
+                                    :src="logo"
+                                    alt="Yurishine"
+                                    class="w-[32.5%] mb-7"
+                                />
+                            </div>
 
-                        <div class="absolute bottom-5 right-5 text-right">
-                            <span
-                                class="block text-[0.7rem] font-medium uppercase mb-1"
-                            >
-                                {{ membership.patient.registrasion_number }}
-                            </span>
-                            <span class="block text-xs font-medium uppercase">
-                                {{ membership.patient.name }}
-                            </span>
-                        </div>
+                            <div class="absolute bottom-5 right-5 text-right">
+                                <span
+                                    class="block text-[0.7rem] font-medium uppercase mb-1"
+                                >
+                                    {{ membership.patient.registrasion_number }}
+                                </span>
+                                <span
+                                    class="block text-xs font-medium uppercase"
+                                >
+                                    {{ membership.patient.name }}
+                                </span>
+                            </div>
 
-                        <div class="absolute bottom-5 left-5 text-left">
-                            <span
-                                class="block text-xs font-medium uppercase mb-1"
-                            >
-                                Saldo
-                            </span>
-                            <span class="block text-[0.7rem] uppercase">
-                                {{ currency.format(membership.balance) }}
-                            </span>
-                        </div>
-                    </el-card>
+                            <div class="absolute bottom-5 left-5 text-left">
+                                <span
+                                    class="block text-xs font-medium uppercase mb-1"
+                                >
+                                    Saldo
+                                </span>
+                                <span class="block text-[0.7rem] uppercase">
+                                    {{ currency.format(membership.balance) }}
+                                </span>
+                            </div>
+                        </el-card>
+                    </Link>
                     <div class="mt-3">
                         <el-button
                             size="small"

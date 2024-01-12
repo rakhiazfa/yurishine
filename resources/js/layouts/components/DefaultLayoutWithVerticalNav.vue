@@ -55,13 +55,13 @@ import UserProfile from "@/layouts/components/UserProfile.vue";
                 }"
             />
 
-            <VerticalNavLink
+            <!-- <VerticalNavLink
                 :item="{
                     title: 'Data Poliklinik',
                     icon: 'bx-buildings',
                     to: '/polyclinics',
                 }"
-            />
+            /> -->
 
             <VerticalNavLink
                 :item="{
