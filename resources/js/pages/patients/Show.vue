@@ -152,6 +152,16 @@ defineOptions({ layout: Layout });
                         <p>{{ formatDate(scope.row.inspection_date) }}</p>
                     </template>
                 </el-table-column>
+                <el-table-column
+                    label="Menggunakan Membership?"
+                    min-width="150px"
+                >
+                    <template #default="scope">
+                        <el-tag>{{
+                            scope.row.use_membership ? "Ya" : "Tidak"
+                        }}</el-tag>
+                    </template>
+                </el-table-column>
             </el-table>
             <div class="mt-5">
                 <Pagination :links="medicalRecords.links" />

@@ -109,6 +109,16 @@ defineOptions({ layout: Layout });
                         <p>{{ formatDate(scope.row.inspection_date) }}</p>
                     </template>
                 </el-table-column>
+                <el-table-column
+                    label="Menggunakan Membership?"
+                    min-width="200px"
+                >
+                    <template #default="scope">
+                        <el-tag>{{
+                            scope.row.use_membership ? "Ya" : "Tidak"
+                        }}</el-tag>
+                    </template>
+                </el-table-column>
                 <el-table-column label="#" width="225px">
                     <template #default="scope">
                         <div class="flex justify-center items-center gap-3">
