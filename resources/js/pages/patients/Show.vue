@@ -51,7 +51,9 @@ defineOptions({ layout: Layout });
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Merokok </template>
-                    <el-tag>{{ patient?.is_smoked ? "Ya" : "Tidak" }}</el-tag>
+                    <el-tag :type="patient?.is_smoked ? 'danger' : ''">{{
+                        patient?.is_smoked ? "Ya" : "Tidak"
+                    }}</el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Menggunakan KB </template>
@@ -59,7 +61,7 @@ defineOptions({ layout: Layout });
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Sedang Menggunakan Skincare? </template>
-                    <el-tag>{{
+                    <el-tag :type="patient?.using_skincare ? '' : 'danger'">{{
                         patient?.using_skincare ? "Ya" : "Tidak"
                     }}</el-tag>
                 </el-descriptions-item>
@@ -67,15 +69,21 @@ defineOptions({ layout: Layout });
                     <template #label>
                         Pernah Menggunakan Cream Racik?
                     </template>
-                    <el-tag>{{
-                        patient?.already_use_mixed_cream ? "Ya" : "Tidak"
-                    }}</el-tag>
+                    <el-tag
+                        :type="patient?.already_use_mixed_cream ? '' : 'danger'"
+                        >{{
+                            patient?.already_use_mixed_cream ? "Ya" : "Tidak"
+                        }}</el-tag
+                    >
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Membership? </template>
-                    <el-tag>{{
-                        patient?.membership_count > 0 ? "Ya" : "Tidak"
-                    }}</el-tag>
+                    <el-tag
+                        :type="patient?.membership_count > 0 ? '' : 'danger'"
+                        >{{
+                            patient?.membership_count > 0 ? "Ya" : "Tidak"
+                        }}</el-tag
+                    >
                 </el-descriptions-item>
             </el-descriptions>
         </el-card>
