@@ -25,6 +25,7 @@ return new class extends Migration
             $table->json('treatments')->nullable();
             $table->json('skincares')->nullable();
             $table->date('inspection_date');
+            $table->boolean('use_membership')->nullable();
             $table->timestamps();
         });
     }

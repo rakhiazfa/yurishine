@@ -55,8 +55,16 @@ class MembershipController extends Controller
     public function store(CreateMembershipRequest $request)
     {
         Cache::forget('patient_doesnt_have_options');
+        Cache::forget('patient_options');
 
         Membership::create($request->all());
+
+        Cache::remember('patient_doesnt_have_options', 2 * 60 * 60, function () {
+            return Patient::doesntHave('membership')->latest()->get();
+        });
+        Cache::remember('patient_options', 12 * 60 * 60, function () {
+            return Patient::withCount('membership')->latest()->get();
+        });
 
         return to_route('memberships.index');
     }

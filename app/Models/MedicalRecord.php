@@ -20,6 +20,7 @@ class MedicalRecord extends Model
         'polyclinic_id',
         'description',
         'inspection_date',
+        'use_membership',
     ];
 
     public function patient(): BelongsTo

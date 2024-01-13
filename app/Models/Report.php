@@ -25,6 +25,7 @@ class Report extends Model
         'treatments',
         'skincares',
         'inspection_date',
+        'use_membership',
     ];
 
     /**

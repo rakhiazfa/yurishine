@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('polyclinic_id')->nullable()->constrained('polyclinics')->nullOnDelete();
             $table->text('description')->nullable();
             $table->date('inspection_date')->default(now());
+            $table->boolean('use_membership')->nullable();
             $table->timestamps();
         });
     }

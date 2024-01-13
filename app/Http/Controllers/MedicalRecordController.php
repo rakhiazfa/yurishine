@@ -48,7 +48,7 @@ class MedicalRecordController extends Controller
     public function create()
     {
         $patients = Cache::remember('patient_options', 12 * 60 * 60, function () {
-            return Patient::latest()->get();
+            return Patient::withCount('membership')->latest()->get();
         });
         $doctors = Cache::remember('doctor_options', 12 * 60 * 60, function () {
             return Doctor::latest()->get();
@@ -93,6 +93,7 @@ class MedicalRecordController extends Controller
             'treatments' => $medicalRecord->treatments,
             'skincares' => $medicalRecord->skincares,
             'inspection_date' => $medicalRecord->created_at,
+            'use_membership' => $medicalRecord->use_membership,
         ]);
 
         return to_route('medical-records.index');
@@ -118,7 +119,7 @@ class MedicalRecordController extends Controller
         $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'treatments', 'skincares']);
 
         $patients = Cache::remember('patient_options', 12 * 60 * 60, function () {
-            return Patient::latest()->get();
+            return Patient::withCount('membership')->latest()->get();
         });
         $doctors = Cache::remember('doctor_options', 12 * 60 * 60, function () {
             return Doctor::latest()->get();

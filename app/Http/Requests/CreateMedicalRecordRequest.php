@@ -18,6 +18,7 @@ class CreateMedicalRecordRequest extends FormRequest
             'doctor_id' => ['required', 'numeric'],
             'polyclinic_id' => ['nullable', 'numeric'],
             'description' => ['nullable'],
+            'use_membership' => ['required', 'boolean'],
         ];
     }
 }

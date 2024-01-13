@@ -7,6 +7,13 @@ import currency from "@/helpers/currency";
 
 const page = usePage();
 
+const props = defineProps({
+    patients: Array,
+    doctors: Array,
+    treatments: Array,
+    skincares: Array,
+});
+
 const multipleTableRef = ref();
 const form = useForm({
     patient_id: null,
@@ -15,7 +22,15 @@ const form = useForm({
     description: "",
     treatments: [],
     skincares: [],
+    use_membership: false,
 });
+const selectedPatient = ref(null);
+
+const handleChangePatient = (patient_id) => {
+    selectedPatient.value = props.patients.find(
+        (patient) => patient.id === patient_id
+    );
+};
 
 const handleSubmit = () => {
     form.post("/medical-records", {
@@ -28,12 +43,6 @@ const handleSubmit = () => {
     });
 };
 
-defineProps({
-    patients: Array,
-    doctors: Array,
-    treatments: Array,
-    skincares: Array,
-});
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -56,6 +65,7 @@ defineOptions({ layout: Layout });
                 <el-form-item label="Pasien" :error="form.errors.patient_id">
                     <el-select
                         v-model="form.patient_id"
+                        @change="handleChangePatient"
                         class="w-full"
                         filterable
                         clearable
@@ -130,6 +140,13 @@ defineOptions({ layout: Layout });
                             )}`"
                         />
                     </el-select>
+                </el-form-item>
+                <el-form-item
+                    v-if="selectedPatient?.membership_count > 0"
+                    label="Gunakan Membership"
+                    :error="form.errors.use_membership"
+                >
+                    <el-switch v-model="form.use_membership" />
                 </el-form-item>
                 <div class="flex justify-end">
                     <el-button size="small" @click="handleSubmit">
