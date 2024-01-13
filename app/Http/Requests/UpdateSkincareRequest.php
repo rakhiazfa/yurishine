@@ -16,6 +16,7 @@ class UpdateSkincareRequest extends FormRequest
         return [
             'name' => ['required'],
             'description' => ['nullable'],
+            'stock' => ['required', 'numeric'],
             'price' => ['required', 'numeric'],
         ];
     }
