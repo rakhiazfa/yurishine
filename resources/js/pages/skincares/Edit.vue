@@ -8,6 +8,7 @@ const props = defineProps({ skincare: Object });
 const form = useForm({
     name: props.skincare?.name,
     description: props.skincare?.description,
+    stock: props.skincare?.stock,
     price: props.skincare?.price,
 });
 
@@ -49,6 +50,9 @@ defineOptions({ layout: Layout });
                     :error="form.errors.description"
                 >
                     <el-input v-model="form.description" type="textarea" />
+                </el-form-item>
+                <el-form-item label="Stok" :error="form.errors.stock">
+                    <el-input-number v-model="form.stock" />
                 </el-form-item>
                 <el-form-item label="Harga" :error="form.errors.price">
                     <el-input

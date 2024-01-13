@@ -6,6 +6,7 @@ import Layout from "@/layouts/Default.vue";
 const form = useForm({
     name: "",
     description: "",
+    stock: "",
     price: "",
 });
 
@@ -47,6 +48,9 @@ defineOptions({ layout: Layout });
                     :error="form.errors.description"
                 >
                     <el-input v-model="form.description" type="textarea" />
+                </el-form-item>
+                <el-form-item label="Stok" :error="form.errors.stock">
+                    <el-input-number v-model="form.stock" />
                 </el-form-item>
                 <el-form-item label="Harga" :error="form.errors.price">
                     <el-input
