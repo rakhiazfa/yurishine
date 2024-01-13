@@ -70,6 +70,15 @@ defineOptions({ layout: Layout });
                                 border
                                 class="mb-5"
                             >
+                                <el-descriptions-item
+                                    label="Menggunakan Membership?"
+                                >
+                                    <el-tag>{{
+                                        props.row?.use_membership
+                                            ? "Ya"
+                                            : "Tidak"
+                                    }}</el-tag>
+                                </el-descriptions-item>
                                 <el-descriptions-item label="Keterangan">
                                     <div
                                         class="ck-editor-result"
@@ -80,7 +89,7 @@ defineOptions({ layout: Layout });
 
                             <div class="flex items-start gap-5">
                                 <div>
-                                    <h2 class="text-sm font-semibold mb-3">
+                                    <h2 class="text-sm font-bold mb-3">
                                         Resep / Skincare
                                     </h2>
                                     <el-table
@@ -111,7 +120,7 @@ defineOptions({ layout: Layout });
                                     </el-table>
                                 </div>
                                 <div>
-                                    <h2 class="text-sm font-semibold mb-3">
+                                    <h2 class="text-sm font-bold mb-3">
                                         Treatment
                                     </h2>
                                     <el-table
