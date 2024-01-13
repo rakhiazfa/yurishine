@@ -11,9 +11,13 @@ use App\Models\Patient;
 use App\Models\Report;
 use App\Models\Skincare;
 use App\Models\Treatment;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class MedicalRecordController extends Controller
 {
@@ -73,30 +77,41 @@ class MedicalRecordController extends Controller
      */
     public function store(CreateMedicalRecordRequest $request)
     {
-        $treatments = $request->input('treatments', []);
-        $skincares = $request->input('skincares', []);
+        try {
+            DB::transaction(function () use ($request) {
+                $treatments = $request->input('treatments', []);
+                $skincares = $request->input('skincares', []);
 
-        $medicalRecord = MedicalRecord::create($request->all());
-        $medicalRecord->treatments()->sync($treatments);
-        $medicalRecord->skincares()->sync($skincares);
+                DB::table('skincares')->whereIn('id', $skincares)->decrement('stock');
 
-        Report::create([
-            'patient_id' => $medicalRecord->patient->id,
-            'patient_registrasion_number' => $medicalRecord->patient->registrasion_number,
-            'patient_name' => $medicalRecord->patient->name,
-            'patient_address' => $medicalRecord->patient->address,
-            'patient_phone' => $medicalRecord->patient->phone,
-            'doctor_id' => $medicalRecord->doctor->id,
-            'doctor_name' => $medicalRecord->doctor->name,
-            'polyclinic_name' => $medicalRecord->polyclinic?->name ?? null,
-            'description' => $medicalRecord->description,
-            'treatments' => $medicalRecord->treatments,
-            'skincares' => $medicalRecord->skincares,
-            'inspection_date' => $medicalRecord->created_at,
-            'use_membership' => $medicalRecord->use_membership,
-        ]);
+                $medicalRecord = MedicalRecord::create($request->all());
+                $medicalRecord->treatments()->sync($treatments);
+                $medicalRecord->skincares()->sync($skincares);
 
-        return to_route('medical-records.index');
+                Report::create([
+                    'patient_id' => $medicalRecord->patient->id,
+                    'patient_registrasion_number' => $medicalRecord->patient->registrasion_number,
+                    'patient_name' => $medicalRecord->patient->name,
+                    'patient_address' => $medicalRecord->patient->address,
+                    'patient_phone' => $medicalRecord->patient->phone,
+                    'doctor_id' => $medicalRecord->doctor->id,
+                    'doctor_name' => $medicalRecord->doctor->name,
+                    'polyclinic_name' => $medicalRecord->polyclinic?->name ?? null,
+                    'description' => $medicalRecord->description,
+                    'treatments' => $medicalRecord->treatments,
+                    'skincares' => $medicalRecord->skincares,
+                    'inspection_date' => $medicalRecord->created_at,
+                    'use_membership' => $medicalRecord->use_membership,
+                ]);
+            });
+
+            return to_route('medical-records.index');
+        } catch (Exception $exception) {
+            return back()->withErrors([
+                'error' => 'Gagal menyimpan rekam medis.',
+                'statusCode' => 502,
+            ])->onlyInput('error');
+        }
     }
 
     /**

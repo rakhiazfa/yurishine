@@ -40,6 +40,14 @@ const handleSubmit = () => {
                 message: "Berhasil menambahkan data.",
             });
         },
+        onError: (response) => {
+            if (response?.statusCode == 502) {
+                ElMessage({
+                    type: "success",
+                    message: response?.error ?? "",
+                });
+            }
+        },
     });
 };
 
