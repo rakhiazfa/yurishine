@@ -33,7 +33,8 @@ class MedicalRecordController extends Controller
 
         if ($keyword) {
             $query->whereHas('patient', function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', "%{$keyword}%");
+                $query->where('name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('registrasion_number', 'LIKE', "%{$keyword}%");
             })
                 ->orWhereHas('doctor', function ($query) use ($keyword) {
                     $query->where('name', 'LIKE', "%{$keyword}%");
