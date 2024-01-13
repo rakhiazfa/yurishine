@@ -59,6 +59,13 @@ class PatientController extends Controller
 
         Patient::create($request->all());
 
+        Cache::remember('patient_options', 12 * 60 * 60, function () {
+            return Patient::latest()->get();
+        });
+        Cache::remember('patient_doesnt_have_options', 12 * 60 * 60, function () {
+            return Patient::doesntHave('membership')->latest()->get();
+        });
+
         return to_route('patients.index');
     }
 
@@ -117,6 +124,13 @@ class PatientController extends Controller
 
         $patient->save();
 
+        Cache::remember('patient_options', 12 * 60 * 60, function () {
+            return Patient::latest()->get();
+        });
+        Cache::remember('patient_doesnt_have_options', 12 * 60 * 60, function () {
+            return Patient::doesntHave('membership')->latest()->get();
+        });
+
         return to_route('patients.index');
     }
 
@@ -129,6 +143,13 @@ class PatientController extends Controller
         Cache::forget('patient_doesnt_have_options');
 
         $patient->delete();
+
+        Cache::remember('patient_options', 12 * 60 * 60, function () {
+            return Patient::latest()->get();
+        });
+        Cache::remember('patient_doesnt_have_options', 12 * 60 * 60, function () {
+            return Patient::doesntHave('membership')->latest()->get();
+        });
 
         return to_route('patients.index');
     }

@@ -6,6 +6,7 @@ use App\Http\Requests\CreateSkincareRequest;
 use App\Http\Requests\UpdateSkincareRequest;
 use App\Models\Skincare;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class SkincareController extends Controller
@@ -48,7 +49,13 @@ class SkincareController extends Controller
      */
     public function store(CreateSkincareRequest $request)
     {
+        Cache::forget('skincare_options');
+
         Skincare::create($request->all());
+
+        Cache::remember('skincare_options', 12 * 60 * 60, function () {
+            return Skincare::latest()->get();
+        });
 
         return to_route('skincares.index');
     }
@@ -78,7 +85,13 @@ class SkincareController extends Controller
      */
     public function update(UpdateSkincareRequest $request, Skincare $skincare)
     {
+        Cache::forget('skincare_options');
+
         $skincare->update($request->all());
+
+        Cache::remember('skincare_options', 12 * 60 * 60, function () {
+            return Skincare::latest()->get();
+        });
 
         return to_route('skincares.index');
     }
@@ -88,7 +101,13 @@ class SkincareController extends Controller
      */
     public function destroy(Skincare $skincare)
     {
+        Cache::forget('skincare_options');
+
         $skincare->delete();
+
+        Cache::remember('skincare_options', 12 * 60 * 60, function () {
+            return Skincare::latest()->get();
+        });
 
         return to_route('skincares.index');
     }

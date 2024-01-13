@@ -53,6 +53,10 @@ class TreatmentController extends Controller
 
         Treatment::create($request->all());
 
+        Cache::remember('treatment_options', 12 * 60 * 60, function () {
+            return Treatment::latest()->get();
+        });
+
         return to_route('treatments.index');
     }
 
@@ -85,6 +89,10 @@ class TreatmentController extends Controller
 
         $treatment->update($request->all());
 
+        Cache::remember('treatment_options', 12 * 60 * 60, function () {
+            return Treatment::latest()->get();
+        });
+
         return to_route('treatments.index');
     }
 
@@ -96,6 +104,10 @@ class TreatmentController extends Controller
         Cache::forget('treatment_options');
 
         $treatment->delete();
+
+        Cache::remember('treatment_options', 12 * 60 * 60, function () {
+            return Treatment::latest()->get();
+        });
 
         return to_route('treatments.index');
     }

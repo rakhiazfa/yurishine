@@ -65,6 +65,10 @@ class DoctorController extends Controller
         $doctor->user()->associate($user);
         $doctor->save();
 
+        Cache::remember('doctor_options', 12 * 60 * 60, function () {
+            return Doctor::latest()->get();
+        });
+
         return to_route('doctors.index');
     }
 
@@ -119,6 +123,10 @@ class DoctorController extends Controller
 
         $doctor->push();
 
+        Cache::remember('doctor_options', 12 * 60 * 60, function () {
+            return Doctor::latest()->get();
+        });
+
         return to_route('doctors.index');
     }
 
@@ -131,6 +139,10 @@ class DoctorController extends Controller
 
         $doctor->user->delete();
         $doctor->delete();
+
+        Cache::remember('doctor_options', 12 * 60 * 60, function () {
+            return Doctor::latest()->get();
+        });
 
         return to_route('doctors.index');
     }

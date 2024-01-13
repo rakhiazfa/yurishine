@@ -47,10 +47,10 @@ class MedicalRecordController extends Controller
      */
     public function create()
     {
-        $patients = Cache::remember('patient_options', 2 * 60 * 60, function () {
+        $patients = Cache::remember('patient_options', 12 * 60 * 60, function () {
             return Patient::latest()->get();
         });
-        $doctors = Cache::remember('doctor_options', 2 * 60 * 60, function () {
+        $doctors = Cache::remember('doctor_options', 12 * 60 * 60, function () {
             return Doctor::latest()->get();
         });
         $treatments = Cache::remember('treatment_options', 2 * 60, function () {
@@ -112,16 +112,16 @@ class MedicalRecordController extends Controller
     {
         $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'medicines', 'treatments']);
 
-        $patients = Cache::remember('patient_options', 2 * 60 * 60, function () {
+        $patients = Cache::remember('patient_options', 12 * 60 * 60, function () {
             return Patient::latest()->get();
         });
-        $doctors = Cache::remember('doctor_options', 2 * 60 * 60, function () {
+        $doctors = Cache::remember('doctor_options', 12 * 60 * 60, function () {
             return Doctor::latest()->get();
         });
-        $treatments = Cache::remember('treatment_options', 2 * 60, function () {
+        $treatments = Cache::remember('treatment_options', 12 * 60 * 60, function () {
             return Treatment::latest()->get();
         });
-        $skincares = Cache::remember('skincare_options', 2 * 60, function () {
+        $skincares = Cache::remember('skincare_options', 12 * 60 * 60, function () {
             return Skincare::latest()->get();
         });
 
