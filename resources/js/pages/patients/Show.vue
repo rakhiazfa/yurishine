@@ -71,6 +71,12 @@ defineOptions({ layout: Layout });
                         patient?.already_use_mixed_cream ? "Ya" : "Tidak"
                     }}</el-tag>
                 </el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label> Membership? </template>
+                    <el-tag>{{
+                        patient?.membership_count > 0 ? "Ya" : "Tidak"
+                    }}</el-tag>
+                </el-descriptions-item>
             </el-descriptions>
         </el-card>
 
@@ -98,46 +104,59 @@ defineOptions({ layout: Layout });
                             </el-descriptions>
 
                             <div class="flex items-start gap-5">
-                                <div>
-                                    <h2 class="text-sm font-bold mb-3">
-                                        Resep / Skincare
-                                    </h2>
-                                    <el-table
-                                        :data="props.row.skincares"
-                                        class="w-max"
-                                        border
-                                        stripe
+                                <el-descriptions
+                                    direction="vertical"
+                                    :column="1"
+                                    border
+                                    class="mb-5"
+                                >
+                                    <el-descriptions-item
+                                        label="Resep / Skincare"
                                     >
-                                        <el-table-column
-                                            prop="name"
-                                            label="Nama"
-                                            width="250px"
-                                        />
-                                    </el-table>
-                                </div>
-                                <div>
-                                    <h2 class="text-sm font-bold mb-3">
-                                        Treatment
-                                    </h2>
-                                    <el-table
-                                        :data="props.row.treatments"
-                                        class="w-max"
-                                        border
-                                        stripe
-                                    >
-                                        <el-table-column
-                                            prop="name"
-                                            label="Nama"
-                                            width="250px"
-                                        />
-                                    </el-table>
-                                </div>
+                                        <el-table
+                                            :data="props.row.skincares"
+                                            class="w-max"
+                                            border
+                                            stripe
+                                        >
+                                            <el-table-column
+                                                prop="name"
+                                                label="Nama Skincare"
+                                                width="250px"
+                                            />
+                                        </el-table>
+                                    </el-descriptions-item>
+                                </el-descriptions>
+                                <el-descriptions
+                                    direction="vertical"
+                                    :column="1"
+                                    border
+                                    class="mb-5"
+                                >
+                                    <el-descriptions-item label="Treatment">
+                                        <el-table
+                                            :data="props.row.treatments"
+                                            class="w-max"
+                                            border
+                                            stripe
+                                        >
+                                            <el-table-column
+                                                prop="name"
+                                                label="Nama"
+                                                width="250px"
+                                            />
+                                        </el-table>
+                                    </el-descriptions-item>
+                                </el-descriptions>
                             </div>
                         </div>
                     </template>
                 </el-table-column>
                 <el-table-column type="index" label="No" width="50px" />
-                <el-table-column label="Dokter" min-width="150px">
+                <el-table-column
+                    label="Dokter Yang Menangani"
+                    min-width="150px"
+                >
                     <template #default="scope">
                         <Link
                             :href="`/doctors/${scope.row.doctor?.id}`"

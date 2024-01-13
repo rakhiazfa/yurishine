@@ -88,68 +88,50 @@ defineOptions({ layout: Layout });
                             </el-descriptions>
 
                             <div class="flex items-start gap-5">
-                                <div>
-                                    <h2 class="text-sm font-bold mb-3">
-                                        Resep / Skincare
-                                    </h2>
-                                    <el-table
-                                        :data="props.row.skincares"
-                                        class="w-max"
-                                        border
-                                        stripe
+                                <el-descriptions
+                                    direction="vertical"
+                                    :column="1"
+                                    border
+                                    class="mb-5"
+                                >
+                                    <el-descriptions-item
+                                        label="Resep / Skincare"
                                     >
-                                        <el-table-column
-                                            prop="name"
-                                            label="Nama"
-                                            width="180px"
-                                        />
-                                        <el-table-column
-                                            label="Harga"
-                                            width="150px"
+                                        <el-table
+                                            :data="props.row.skincares"
+                                            class="w-max"
+                                            border
+                                            stripe
                                         >
-                                            <template #default="scope">
-                                                <p>
-                                                    {{
-                                                        currency.format(
-                                                            scope.row.price
-                                                        )
-                                                    }}
-                                                </p>
-                                            </template>
-                                        </el-table-column>
-                                    </el-table>
-                                </div>
-                                <div>
-                                    <h2 class="text-sm font-bold mb-3">
-                                        Treatment
-                                    </h2>
-                                    <el-table
-                                        :data="props.row.treatments"
-                                        class="w-max"
-                                        border
-                                        stripe
-                                    >
-                                        <el-table-column
-                                            prop="name"
-                                            label="Nama"
-                                            width="180px"
-                                        />
-                                        <el-table-column
-                                            label="Harga"
-                                            width="150px"
+                                            <el-table-column
+                                                prop="name"
+                                                label="Nama Skincare"
+                                                width="250px"
+                                            />
+                                        </el-table>
+                                    </el-descriptions-item>
+                                </el-descriptions>
+                                <el-descriptions
+                                    direction="vertical"
+                                    :column="1"
+                                    border
+                                    class="mb-5"
+                                >
+                                    <el-descriptions-item label="Treatment">
+                                        <el-table
+                                            :data="props.row.treatments"
+                                            class="w-max"
+                                            border
+                                            stripe
                                         >
-                                            <template #default="scope">
-                                                <p>
-                                                    {{
-                                                        currency.format(
-                                                            scope.row.price
-                                                        )
-                                                    }}
-                                                </p>
-                                            </template>
-                                        </el-table-column>
-                                    </el-table>
-                                </div>
+                                            <el-table-column
+                                                prop="name"
+                                                label="Nama"
+                                                width="250px"
+                                            />
+                                        </el-table>
+                                    </el-descriptions-item>
+                                </el-descriptions>
                             </div>
                         </div>
                     </template>
