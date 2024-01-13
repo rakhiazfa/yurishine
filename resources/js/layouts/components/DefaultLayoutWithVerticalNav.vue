@@ -52,7 +52,7 @@ import UserProfile from "@/layouts/components/UserProfile.vue";
 
                 <VerticalNavSectionTitle
                     :item="{
-                        heading: 'LAINNYA',
+                        heading: 'MENU',
                     }"
                 />
 
