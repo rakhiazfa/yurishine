@@ -22,8 +22,12 @@ defineOptions({ layout: Layout });
 
             <el-descriptions class="margin-top" :column="1" border>
                 <el-descriptions-item label-class-name="w-[250px]">
+                    <template #label> Nomor Induk </template>
+                    {{ patient?.registrasion_number ?? "-" }}
+                </el-descriptions-item>
+                <el-descriptions-item label-class-name="w-[250px]">
                     <template #label> Nama </template>
-                    {{ patient?.name ?? "-" }}
+                    <p class="font-bold">{{ patient?.name ?? "-" }}</p>
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Umur </template>
