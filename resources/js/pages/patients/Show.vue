@@ -97,21 +97,42 @@ defineOptions({ layout: Layout });
                                 </el-descriptions-item>
                             </el-descriptions>
 
-                            <h2 class="text-sm font-semibold mb-3">
-                                Treatment
-                            </h2>
-                            <el-table
-                                :data="props.row.treatments"
-                                class="w-max"
-                                border
-                                stripe
-                            >
-                                <el-table-column
-                                    prop="name"
-                                    label="Nama"
-                                    width="250px"
-                                />
-                            </el-table>
+                            <div class="flex items-start gap-5">
+                                <div>
+                                    <h2 class="text-sm font-semibold mb-3">
+                                        Resep / Skincare
+                                    </h2>
+                                    <el-table
+                                        :data="props.row.skincares"
+                                        class="w-max"
+                                        border
+                                        stripe
+                                    >
+                                        <el-table-column
+                                            prop="name"
+                                            label="Nama"
+                                            width="250px"
+                                        />
+                                    </el-table>
+                                </div>
+                                <div>
+                                    <h2 class="text-sm font-semibold mb-3">
+                                        Treatment
+                                    </h2>
+                                    <el-table
+                                        :data="props.row.treatments"
+                                        class="w-max"
+                                        border
+                                        stripe
+                                    >
+                                        <el-table-column
+                                            prop="name"
+                                            label="Nama"
+                                            width="250px"
+                                        />
+                                    </el-table>
+                                </div>
+                            </div>
                         </div>
                     </template>
                 </el-table-column>
@@ -124,6 +145,15 @@ defineOptions({ layout: Layout });
                         >
                             {{ scope.row.doctor?.name ?? "-" }}
                         </Link>
+                    </template>
+                </el-table-column>
+                <el-table-column label="Membership" min-width="150px">
+                    <template #default="scope">
+                        <el-tag>
+                            {{
+                                scope.row.membership_count > 0 ? "Ya" : "Tidak"
+                            }}
+                        </el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column label="Tanggal Pemeriksaan" min-width="150px">
