@@ -18,11 +18,12 @@ class DoctorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nip' => fake()->uuid(),
+            'nip' => fake()->unique()->numberBetween(100000000000000, 999999999999999),
             'name' => fake()->name(),
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber(),
             'user_id' => User::factory()->create()->id,
+            'created_at' => fake()->date(),
         ];
     }
 }

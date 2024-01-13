@@ -12,39 +12,6 @@ class TreatmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Treatment::create([
-            'name' => 'Laser accutoning',
-            'price' => 700000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Facial Premium',
-            'price' => 175000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Totok Wajah',
-            'price' => 175000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Suntik Botox',
-            'price' => 175000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Mesoterapi',
-            'price' => 175000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Microdermabrasi',
-            'price' => 175000,
-        ]);
-
-        Treatment::create([
-            'name' => 'Peeling Kimia',
-            'price' => 175000,
-        ]);
+        Treatment::factory()->count(50)->create();
     }
 }

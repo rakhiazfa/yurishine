@@ -12,16 +12,6 @@ class PatientSeeder extends Seeder
      */
     public function run(): void
     {
-        Patient::create([
-            'registrasion_number' => Patient::generateRegistrasionNumber(),
-            'name' => 'Daffarel Fauzan',
-            'age' => 19,
-            'gender' => 'Pria',
-            'skin_type' => 'Oily',
-            'address' => 'Jl. Kresna No. 24-42c, Kel. Durman, Kec. Andir',
-            'phone' => '082482429401',
-        ]);
-
-        Patient::factory()->count(150)->create();
+        Patient::factory()->count(50)->create();
     }
 }
