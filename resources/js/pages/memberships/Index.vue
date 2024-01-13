@@ -158,7 +158,7 @@ const search = () => {
     );
 };
 
-defineProps({ memberships: Array, patients: Array });
+defineProps({ memberships: Object, patients: Array });
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -246,7 +246,10 @@ defineOptions({ layout: Layout });
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5 mt-5"
             >
-                <div v-for="membership in memberships" :key="membership.id">
+                <div
+                    v-for="membership in memberships.data"
+                    :key="membership.id"
+                >
                     <Link :href="`/patients/${membership.patient.id}`">
                         <el-card
                             class="relative w-[300px] h-[175px] rounded-md"

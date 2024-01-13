@@ -54,7 +54,7 @@ const search = () => {
     );
 };
 
-defineProps({ treatments: Array });
+defineProps({ treatments: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>

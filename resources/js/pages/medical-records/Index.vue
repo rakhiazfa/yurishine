@@ -48,7 +48,7 @@ const search = () => {
     );
 };
 
-defineProps({ medicalRecords: Array });
+defineProps({ medicalRecords: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>

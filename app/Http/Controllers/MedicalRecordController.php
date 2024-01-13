@@ -9,6 +9,7 @@ use App\Models\MedicalRecord;
 use App\Models\Medicine;
 use App\Models\Patient;
 use App\Models\Report;
+use App\Models\Skincare;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -55,11 +56,15 @@ class MedicalRecordController extends Controller
         $treatments = Cache::remember('treatment_options', 2 * 60, function () {
             return Treatment::latest()->get();
         });
+        $skincares = Cache::remember('skincare_options', 2 * 60, function () {
+            return Skincare::latest()->get();
+        });
 
         return Inertia::render('medical-records/Create', [
             'patients' => $patients,
             'doctors' => $doctors,
             'treatments' => $treatments,
+            'skincares' => $skincares,
         ]);
     }
 
@@ -68,11 +73,10 @@ class MedicalRecordController extends Controller
      */
     public function store(CreateMedicalRecordRequest $request)
     {
-        $medicines = $request->input('medicines', []);
         $treatments = $request->input('treatments', []);
+        $skincares = $request->input('skincares', []);
 
         $medicalRecord = MedicalRecord::create($request->all());
-        $medicalRecord->medicines()->sync($medicines);
         $medicalRecord->treatments()->sync($treatments);
 
         Report::create([
@@ -94,7 +98,7 @@ class MedicalRecordController extends Controller
      */
     public function show(MedicalRecord $medicalRecord)
     {
-        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'medicines', 'treatments']);
+        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'treatments']);
 
         return Inertia::render('medical-records/Show', [
             'medicalRecord' => $medicalRecord,
@@ -117,12 +121,16 @@ class MedicalRecordController extends Controller
         $treatments = Cache::remember('treatment_options', 2 * 60, function () {
             return Treatment::latest()->get();
         });
+        $skincares = Cache::remember('skincare_options', 2 * 60, function () {
+            return Skincare::latest()->get();
+        });
 
         return Inertia::render('medical-records/Edit', [
             'medicalRecord' => $medicalRecord,
             'patients' => $patients,
             'doctors' => $doctors,
             'treatments' => $treatments,
+            'skincares' => $skincares,
         ]);
     }
 
@@ -131,11 +139,9 @@ class MedicalRecordController extends Controller
      */
     public function update(UpdateMedicalRecordRequest $request, MedicalRecord $medicalRecord)
     {
-        $medicines = $request->input('medicines', []);
         $treatments = $request->input('treatments', []);
 
         $medicalRecord->update($request->all());
-        $medicalRecord->medicines()->sync($medicines);
         $medicalRecord->treatments()->sync($treatments);
 
         return to_route('medical-records.index');

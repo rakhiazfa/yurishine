@@ -2,6 +2,7 @@
 import { Head, Link, router } from "@inertiajs/vue3";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Layout from "@/layouts/Default.vue";
+import Pagination from "@/components/Pagination.vue";
 import { reactive } from "vue";
 import { formatDate } from "@/helpers/date";
 import currency from "@/helpers/currency";
@@ -28,7 +29,7 @@ const search = () => {
     );
 };
 
-defineProps({ reports: Array });
+defineProps({ reports: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -59,7 +60,7 @@ defineOptions({ layout: Layout });
                 </el-form-item>
             </el-form>
 
-            <el-table :data="reports" class="w-auto" border stripe>
+            <el-table :data="reports.data" class="w-auto" border stripe>
                 <el-table-column type="expand">
                     <template #default="props">
                         <div class="p-5">
@@ -135,6 +136,9 @@ defineOptions({ layout: Layout });
                     </template>
                 </el-table-column>
             </el-table>
+            <div class="mt-5">
+                <Pagination :links="reports.links" />
+            </div>
         </el-card>
     </div>
 </template>

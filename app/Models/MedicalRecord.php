@@ -41,4 +41,9 @@ class MedicalRecord extends Model
     {
         return $this->belongsToMany(Treatment::class, 'medical_record_has_treatments', 'medical_record_id', 'treatment_id');
     }
+
+    public function skincares(): BelongsToMany
+    {
+        return $this->belongsToMany(Skincare::class, 'medical_record_has_skincares', 'medical_record_id', 'skincare_id');
+    }
 }

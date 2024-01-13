@@ -25,7 +25,7 @@ class ReportController extends Controller
                 ->orWhere('polyclinic_name', 'LIKE', "%{$keyword}%");
         }
 
-        $reports = $query->get();
+        $reports = $query->paginate(10)->withQueryString();
 
         return Inertia::render('reports/Index', [
             'reports' => $reports,

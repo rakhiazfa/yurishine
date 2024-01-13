@@ -84,7 +84,6 @@ defineOptions({ layout: Layout });
                             <el-option value="" label="Semua" />
                             <el-option value="name" label="Nama" />
                             <el-option value="nip" label="NIP" />
-                            <el-option value="address" label="Alamat" />
                             <el-option value="phone" label="Nomor Telepon" />
                             <el-option value="email" label="Email" />
                         </el-select>

@@ -28,7 +28,7 @@ class SkincareController extends Controller
             $query->where($column, 'LIKE', "%{$keyword}%");
         }
 
-        $skincares = $query->paginate(15);
+        $skincares = $query->paginate(10)->withQueryString();
 
         return Inertia::render('skincares/Index', [
             'skincares' => $skincares,

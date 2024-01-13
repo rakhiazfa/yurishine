@@ -90,7 +90,10 @@ defineOptions({ layout: Layout });
                             <el-option value="age" label="Umur" />
                             <el-option value="gender" label="Jenis Kelamin" />
                             <el-option value="skin_type" label="Jenis Kulit" />
-                            <el-option value="address" label="Alamat" />
+                            <el-option
+                                value="is_smoked"
+                                label="Status Merokok"
+                            />
                             <el-option value="phone" label="Nomor Telepon" />
                         </el-select>
                     </template>
@@ -123,6 +126,16 @@ defineOptions({ layout: Layout });
                             <el-option value="Dry" label="Dry" />
                             <el-option value="Acne" label="Acne" />
                             <el-option value="Kombinasi" label="Kombinasi" />
+                        </el-select>
+                        <el-select
+                            v-else-if="formFilter.column === 'is_smoked'"
+                            v-model="formFilter.keyword"
+                            placeholder="Pilih status merokok"
+                            filterable
+                            clearable
+                        >
+                            <el-option value="1" label="Ya" />
+                            <el-option value="0" label="Tidak" />
                         </el-select>
                         <el-input
                             v-else

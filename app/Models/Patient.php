@@ -36,9 +36,9 @@ class Patient extends Model
 
     public static function generateRegistrasionNumber(): string
     {
-        $end = str_pad(self::count() + 1, 5, '0', STR_PAD_LEFT);
+        $end = str_pad(self::count() + 1, 4, '0', STR_PAD_LEFT);
 
-        return '7210' . now()->format('dmy') . $end;
+        return '7210' . now()->format('dmyu') . $end;
     }
 
     public function medicalRecords(): HasMany

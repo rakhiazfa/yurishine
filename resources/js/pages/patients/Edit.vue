@@ -14,6 +14,8 @@ const form = useForm({
     phone: props.patient?.phone,
     is_smoked: props.patient?.is_smoked?.toString(),
     using_kb: props.patient?.using_kb,
+    using_skincare: props.patient?.using_skincare.toString(),
+    already_use_mixed_cream: props.patient?.already_use_mixed_cream.toString(),
 });
 
 const handleSubmit = () => {
@@ -31,6 +33,7 @@ defineOptions({ layout: Layout });
 </script>
 <template>
     <Head title="Edit Data Pasien" />
+    {{ JSON.stringify(form.errors) }}
     <div>
         <el-card>
             <div class="flex justify-between items-center mb-5">
@@ -87,6 +90,27 @@ defineOptions({ layout: Layout });
                     :error="form.errors.using_kb"
                 >
                     <el-input v-model="form.using_kb" type="textarea" />
+                </el-form-item>
+                <el-form-item
+                    label="Sedang Menggunakan Skincare?"
+                    :error="form.errors.using_skincare"
+                >
+                    <el-radio-group v-model="form.using_skincare" class="ml-4">
+                        <el-radio label="1" size="large">Ya</el-radio>
+                        <el-radio label="0" size="large">Tidak</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item
+                    label="Pernah Menggunakan Cream Racik?"
+                    :error="form.errors.already_use_mixed_cream"
+                >
+                    <el-radio-group
+                        v-model="form.already_use_mixed_cream"
+                        class="ml-4"
+                    >
+                        <el-radio label="1" size="large">Ya</el-radio>
+                        <el-radio label="0" size="large">Tidak</el-radio>
+                    </el-radio-group>
                 </el-form-item>
                 <div class="flex justify-end">
                     <el-button size="small" @click="handleSubmit">
