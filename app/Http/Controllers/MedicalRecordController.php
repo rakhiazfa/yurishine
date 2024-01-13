@@ -121,6 +121,11 @@ class MedicalRecordController extends Controller
                 'error' => $exception->getMessage() ?? 'Gagal menyimpan rekam medis.',
                 'statusCode' => 502,
             ])->onlyInput('error');
+        } finally {
+            Cache::forget('skincare_options');
+            Cache::remember('skincare_options', 2 * 60, function () {
+                return Skincare::latest()->get();
+            });
         }
     }
 

@@ -45,6 +45,7 @@ const handleSubmit = () => {
                 ElMessage({
                     type: "success",
                     message: response?.error ?? "",
+                    delay: 5000,
                 });
             }
         },
