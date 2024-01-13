@@ -28,6 +28,10 @@ defineOptions({ layout: Layout });
                     {{ skincare?.description ?? "-" }}
                 </el-descriptions-item>
                 <el-descriptions-item>
+                    <template #label> Stok </template>
+                    {{ skincare?.stock ? `${skincare?.stock} Unit` : "0 Unit" }}
+                </el-descriptions-item>
+                <el-descriptions-item>
                     <template #label> Harga </template>
                     {{ skincare?.price ?? "-" }}
                 </el-descriptions-item>

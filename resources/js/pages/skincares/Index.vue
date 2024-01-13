@@ -105,9 +105,15 @@ defineOptions({ layout: Layout });
             <el-table :data="skincares.data" class="w-auto" border stripe>
                 <el-table-column type="index" label="No" width="50px" />
                 <el-table-column prop="name" label="Nama" width="180px" />
-                <el-table-column label="Deskripsi" min-width="350px">
+                <el-table-column label="Stok" min-width="150px">
                     <template #default="scope">
-                        <p>{{ scope.row.description ?? "-" }}</p>
+                        <p>
+                            {{
+                                scope.row.stock
+                                    ? `${scope.row.stock} Unit`
+                                    : "0 Unit"
+                            }}
+                        </p>
                     </template>
                 </el-table-column>
                 <el-table-column label="Harga" width="150px">
@@ -115,9 +121,12 @@ defineOptions({ layout: Layout });
                         <p>{{ currency.format(scope.row.price) }}</p>
                     </template>
                 </el-table-column>
-                <el-table-column label="#" width="150px">
+                <el-table-column label="#" width="250px">
                     <template #default="scope">
                         <div class="flex justify-center items-center gap-3">
+                            <Link :href="`/skincares/${scope.row.id}`">
+                                <el-button size="small">Detail</el-button>
+                            </Link>
                             <Link :href="`/skincares/${scope.row.id}/edit`">
                                 <el-button size="small">Edit</el-button>
                             </Link>
