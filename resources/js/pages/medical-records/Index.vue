@@ -114,9 +114,12 @@ defineOptions({ layout: Layout });
                     min-width="200px"
                 >
                     <template #default="scope">
-                        <el-tag>{{
-                            scope.row.use_membership ? "Ya" : "Tidak"
-                        }}</el-tag>
+                        <el-tag
+                            :type="scope.row.use_membership ? '' : 'danger'"
+                            >{{
+                                scope.row.use_membership ? "Ya" : "Tidak"
+                            }}</el-tag
+                        >
                     </template>
                 </el-table-column>
                 <el-table-column label="#" width="225px">

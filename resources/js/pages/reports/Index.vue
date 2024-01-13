@@ -73,11 +73,18 @@ defineOptions({ layout: Layout });
                                 <el-descriptions-item
                                     label="Menggunakan Membership?"
                                 >
-                                    <el-tag>{{
-                                        props.row?.use_membership
-                                            ? "Ya"
-                                            : "Tidak"
-                                    }}</el-tag>
+                                    <el-tag
+                                        :type="
+                                            props.row?.use_membership
+                                                ? ''
+                                                : 'danger'
+                                        "
+                                        >{{
+                                            props.row?.use_membership
+                                                ? "Ya"
+                                                : "Tidak"
+                                        }}</el-tag
+                                    >
                                 </el-descriptions-item>
                                 <el-descriptions-item label="Keterangan">
                                     <div
