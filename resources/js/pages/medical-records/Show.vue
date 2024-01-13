@@ -24,6 +24,12 @@ defineOptions({ layout: Layout });
                 <el-descriptions class="margin-top" :column="1" border>
                     <el-descriptions-item>
                         <template #label>
+                            <div class="cell-item">Nomor Induk</div>
+                        </template>
+                        {{ medicalRecord?.patient?.registrasion_number ?? "-" }}
+                    </el-descriptions-item>
+                    <el-descriptions-item>
+                        <template #label>
                             <div class="cell-item">Nama</div>
                         </template>
                         {{ medicalRecord?.patient?.name ?? "-" }}
@@ -48,15 +54,15 @@ defineOptions({ layout: Layout });
                 <el-descriptions class="margin-top" :column="1" border>
                     <el-descriptions-item>
                         <template #label>
-                            <div class="cell-item">Nama</div>
+                            <div class="cell-item">NIP</div>
                         </template>
-                        {{ medicalRecord?.doctor?.name ?? "-" }}
+                        {{ medicalRecord?.doctor?.nip ?? "-" }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template #label>
-                            <div class="cell-item">Spesialis</div>
+                            <div class="cell-item">Nama</div>
                         </template>
-                        {{ medicalRecord?.doctor?.specialist ?? "-" }}
+                        {{ medicalRecord?.doctor?.name ?? "-" }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template #label>
@@ -89,6 +95,18 @@ defineOptions({ layout: Layout });
                             class="text-blue-500 hover:underline"
                         >
                             {{ treatment?.name ?? "-" }}
+                        </Link>
+                    </div>
+                </el-descriptions-item>
+                <el-descriptions-item label="Resep / Skincare">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <Link
+                            v-for="skincare in medicalRecord?.skincares"
+                            :key="skincare.id"
+                            :href="`/skincares/${skincare.id}`"
+                            class="text-blue-500 hover:underline"
+                        >
+                            {{ skincare?.name ?? "-" }}
                         </Link>
                     </div>
                 </el-descriptions-item>

@@ -78,6 +78,7 @@ class MedicalRecordController extends Controller
 
         $medicalRecord = MedicalRecord::create($request->all());
         $medicalRecord->treatments()->sync($treatments);
+        $medicalRecord->skincares()->sync($skincares);
 
         Report::create([
             'patient_name' => $medicalRecord->patient->name,
@@ -98,7 +99,7 @@ class MedicalRecordController extends Controller
      */
     public function show(MedicalRecord $medicalRecord)
     {
-        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'treatments']);
+        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'treatments', 'skincares']);
 
         return Inertia::render('medical-records/Show', [
             'medicalRecord' => $medicalRecord,
@@ -110,7 +111,7 @@ class MedicalRecordController extends Controller
      */
     public function edit(MedicalRecord $medicalRecord)
     {
-        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'medicines', 'treatments']);
+        $medicalRecord->load(['patient', 'doctor', 'polyclinic', 'treatments', 'skincares']);
 
         $patients = Cache::remember('patient_options', 12 * 60 * 60, function () {
             return Patient::latest()->get();
@@ -140,9 +141,11 @@ class MedicalRecordController extends Controller
     public function update(UpdateMedicalRecordRequest $request, MedicalRecord $medicalRecord)
     {
         $treatments = $request->input('treatments', []);
+        $skincares = $request->input('skincares', []);
 
         $medicalRecord->update($request->all());
         $medicalRecord->treatments()->sync($treatments);
+        $medicalRecord->skincares()->sync($skincares);
 
         return to_route('medical-records.index');
     }

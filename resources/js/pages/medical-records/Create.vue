@@ -14,6 +14,7 @@ const form = useForm({
     polyclinic_id: computed(() => page.props.auth.polyclinic?.id),
     description: "",
     treatments: [],
+    skincares: [],
 });
 
 const handleSubmit = () => {
@@ -27,7 +28,12 @@ const handleSubmit = () => {
     });
 };
 
-defineProps({ patients: Array, doctors: Array, treatments: Array });
+defineProps({
+    patients: Array,
+    doctors: Array,
+    treatments: Array,
+    skincares: Array,
+});
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -100,6 +106,27 @@ defineOptions({ layout: Layout });
                             :value="treatment.id"
                             :label="`${treatment.name} - ${currency.format(
                                 treatment.price
+                            )}`"
+                        />
+                    </el-select>
+                </el-form-item>
+                <el-form-item
+                    label="Resep / Skincare"
+                    :error="form.errors.treatments"
+                >
+                    <el-select
+                        v-model="form.skincares"
+                        class="w-full"
+                        multiple
+                        filterable
+                        clearable
+                    >
+                        <el-option
+                            v-for="skincare in skincares"
+                            :key="skincare.id"
+                            :value="skincare.id"
+                            :label="`${skincare.name} - ${currency.format(
+                                skincare.price
                             )}`"
                         />
                     </el-select>
