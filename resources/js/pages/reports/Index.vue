@@ -162,7 +162,7 @@ defineOptions({ layout: Layout });
                     label="Nomor Telepon Pasien"
                     width="180px"
                 />
-                <el-table-column label="Nama Dokter" width="180px">
+                <el-table-column label="Dokter Yang Menangani" width="180px">
                     <template #default="scope">
                         <Link
                             :href="`/doctors/${scope.row.doctor_id}`"
