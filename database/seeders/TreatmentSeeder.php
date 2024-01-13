@@ -12,6 +12,6 @@ class TreatmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Treatment::factory()->count(50)->create();
+        Treatment::factory()->count(20)->create();
     }
 }

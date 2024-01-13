@@ -12,6 +12,6 @@ class SkincareSeeder extends Seeder
      */
     public function run(): void
     {
-        Skincare::factory()->count(50)->create();
+        Skincare::factory()->count(20)->create();
     }
 }
