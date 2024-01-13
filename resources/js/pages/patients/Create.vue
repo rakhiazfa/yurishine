@@ -86,7 +86,7 @@ defineOptions({ layout: Layout });
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
-                    label="Menggunakan KB"
+                    label="Menggunakan KB?"
                     :error="form.errors.using_kb"
                 >
                     <el-input v-model="form.using_kb" type="textarea" />
