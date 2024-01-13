@@ -17,6 +17,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class MedicalRecordController extends Controller
@@ -82,7 +83,15 @@ class MedicalRecordController extends Controller
                 $treatments = $request->input('treatments', []);
                 $skincares = $request->input('skincares', []);
 
-                DB::table('skincares')->whereIn('id', $skincares)->decrement('stock');
+                $selectedSkincares = DB::table('skincares')->whereIn('id', $skincares)->get();
+
+                foreach ($selectedSkincares as $skincare) {
+                    if ($skincare->stock > 0) {
+                        DB::table('skincares')->where('id', $skincare->id)->decrement('stock');
+                    } else {
+                        throw new BadRequestHttpException('Stock telah kosong untuk produk dengan nama ' . $skincare->name);
+                    }
+                }
 
                 $medicalRecord = MedicalRecord::create($request->all());
                 $medicalRecord->treatments()->sync($treatments);
@@ -108,7 +117,7 @@ class MedicalRecordController extends Controller
             return to_route('medical-records.index');
         } catch (Exception $exception) {
             return back()->withErrors([
-                'error' => 'Gagal menyimpan rekam medis.',
+                'error' => $exception->getMessage() ?? 'Gagal menyimpan rekam medis.',
                 'statusCode' => 502,
             ])->onlyInput('error');
         }
