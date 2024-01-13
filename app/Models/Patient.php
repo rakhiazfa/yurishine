@@ -27,7 +27,6 @@ class Patient extends Model
         'using_kb',
         'using_skincare',
         'already_use_mixed_cream',
-        'user_id',
     ];
 
     public function membership(): HasOne
