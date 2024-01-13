@@ -147,15 +147,6 @@ defineOptions({ layout: Layout });
                         </Link>
                     </template>
                 </el-table-column>
-                <el-table-column label="Membership" min-width="150px">
-                    <template #default="scope">
-                        <el-tag>
-                            {{
-                                scope.row.membership_count > 0 ? "Ya" : "Tidak"
-                            }}
-                        </el-tag>
-                    </template>
-                </el-table-column>
                 <el-table-column label="Tanggal Pemeriksaan" min-width="150px">
                     <template #default="scope">
                         <p>{{ formatDate(scope.row.inspection_date) }}</p>
