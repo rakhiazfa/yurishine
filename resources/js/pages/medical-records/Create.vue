@@ -137,7 +137,7 @@ defineOptions({ layout: Layout });
                             :value="skincare.id"
                             :label="`${skincare.name} - ${currency.format(
                                 skincare.price
-                            )}`"
+                            )} ( ${skincare.stock ?? 0} Unit )`"
                         />
                     </el-select>
                 </el-form-item>
