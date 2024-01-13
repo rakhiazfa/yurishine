@@ -4,7 +4,7 @@ import Layout from "@/layouts/Default.vue";
 
 let urlPrevious = usePage().props.urlPrevious;
 
-defineProps({ treatment: Array });
+defineProps({ treatment: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>

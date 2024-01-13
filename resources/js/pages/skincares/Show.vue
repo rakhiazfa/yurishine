@@ -4,7 +4,7 @@ import Layout from "@/layouts/Default.vue";
 
 let urlPrevious = usePage().props.urlPrevious;
 
-defineProps({ medicine: Array });
+defineProps({ skincare: Object });
 defineOptions({ layout: Layout });
 </script>
 <template>
@@ -21,15 +21,15 @@ defineOptions({ layout: Layout });
             <el-descriptions class="margin-top" :column="1" border>
                 <el-descriptions-item label-class-name="w-[200px]">
                     <template #label> Nama Skincare </template>
-                    {{ medicine?.name ?? "-" }}
+                    {{ skincare?.name ?? "-" }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Deskripsi </template>
-                    {{ medicine?.description ?? "-" }}
+                    {{ skincare?.description ?? "-" }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label> Harga </template>
-                    {{ medicine?.price ?? "-" }}
+                    {{ skincare?.price ?? "-" }}
                 </el-descriptions-item>
             </el-descriptions>
         </el-card>
