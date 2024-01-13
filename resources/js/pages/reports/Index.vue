@@ -78,38 +78,82 @@ defineOptions({ layout: Layout });
                                 </el-descriptions-item>
                             </el-descriptions>
 
-                            <h2 class="text-sm font-semibold mb-3">
-                                Treatment
-                            </h2>
-                            <el-table
-                                :data="props.row.treatments"
-                                class="w-max"
-                                border
-                                stripe
-                            >
-                                <el-table-column
-                                    prop="name"
-                                    label="Nama"
-                                    width="180px"
-                                />
-                                <el-table-column label="Harga" width="150px">
-                                    <template #default="scope">
-                                        <p>
-                                            {{
-                                                currency.format(scope.row.price)
-                                            }}
-                                        </p>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
+                            <div class="flex items-start gap-5">
+                                <div>
+                                    <h2 class="text-sm font-semibold mb-3">
+                                        Resep / Skincare
+                                    </h2>
+                                    <el-table
+                                        :data="props.row.skincares"
+                                        class="w-max"
+                                        border
+                                        stripe
+                                    >
+                                        <el-table-column
+                                            prop="name"
+                                            label="Nama"
+                                            width="180px"
+                                        />
+                                        <el-table-column
+                                            label="Harga"
+                                            width="150px"
+                                        >
+                                            <template #default="scope">
+                                                <p>
+                                                    {{
+                                                        currency.format(
+                                                            scope.row.price
+                                                        )
+                                                    }}
+                                                </p>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+                                </div>
+                                <div>
+                                    <h2 class="text-sm font-semibold mb-3">
+                                        Treatment
+                                    </h2>
+                                    <el-table
+                                        :data="props.row.treatments"
+                                        class="w-max"
+                                        border
+                                        stripe
+                                    >
+                                        <el-table-column
+                                            prop="name"
+                                            label="Nama"
+                                            width="180px"
+                                        />
+                                        <el-table-column
+                                            label="Harga"
+                                            width="150px"
+                                        >
+                                            <template #default="scope">
+                                                <p>
+                                                    {{
+                                                        currency.format(
+                                                            scope.row.price
+                                                        )
+                                                    }}
+                                                </p>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+                                </div>
+                            </div>
                         </div>
                     </template>
                 </el-table-column>
-                <el-table-column
-                    prop="patient_name"
-                    label="Nama Pasien"
-                    width="180px"
-                />
+                <el-table-column label="Nama Pasien" width="180px">
+                    <template #default="scope">
+                        <Link
+                            :href="`/patients/${scope.row.patient_id}`"
+                            class="text-blue-500 hover:underline"
+                            >{{ scope.row.patient_name ?? "-" }}</Link
+                        >
+                    </template>
+                </el-table-column>
                 <el-table-column
                     prop="patient_address"
                     label="Alamat Pasien"
@@ -120,14 +164,13 @@ defineOptions({ layout: Layout });
                     label="Nomor Telepon Pasien"
                     width="180px"
                 />
-                <el-table-column
-                    prop="doctor_name"
-                    label="Nama Dokter"
-                    width="180px"
-                />
-                <el-table-column label="Name Poliklinik" width="180px">
+                <el-table-column label="Nama Dokter" width="180px">
                     <template #default="scope">
-                        <p>{{ scope.row?.polyclinic_name ?? "-" }}</p>
+                        <Link
+                            :href="`/doctors/${scope.row.doctor_id}`"
+                            class="text-blue-500 hover:underline"
+                            >{{ scope.row.doctor_name ?? "-" }}</Link
+                        >
                     </template>
                 </el-table-column>
                 <el-table-column label="Tanggal Pemeriksaan" width="180px">

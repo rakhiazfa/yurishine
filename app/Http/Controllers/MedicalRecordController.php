@@ -81,13 +81,17 @@ class MedicalRecordController extends Controller
         $medicalRecord->skincares()->sync($skincares);
 
         Report::create([
+            'patient_id' => $medicalRecord->patient->id,
+            'patient_registrasion_number' => $medicalRecord->patient->registrasion_number,
             'patient_name' => $medicalRecord->patient->name,
             'patient_address' => $medicalRecord->patient->address,
             'patient_phone' => $medicalRecord->patient->phone,
+            'doctor_id' => $medicalRecord->doctor->id,
             'doctor_name' => $medicalRecord->doctor->name,
             'polyclinic_name' => $medicalRecord->polyclinic?->name ?? null,
             'description' => $medicalRecord->description,
             'treatments' => $medicalRecord->treatments,
+            'skincares' => $medicalRecord->skincares,
             'inspection_date' => $medicalRecord->created_at,
         ]);
 
