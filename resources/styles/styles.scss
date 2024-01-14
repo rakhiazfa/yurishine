@@ -1,9 +1,13 @@
 body {
-    background-color: #df97f9 !important;
+    background-color: #e187e3 !important;
 }
 
 a {
     color: inherit;
+}
+
+.layout-navbar::after {
+    display: none;
 }
 
 .v-field__input {
