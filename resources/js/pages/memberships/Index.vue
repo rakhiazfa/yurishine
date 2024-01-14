@@ -2,6 +2,7 @@
 import { Head, Link, router, useForm } from "@inertiajs/vue3";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Layout from "@/layouts/Default.vue";
+import Pagination from "@/components/Pagination.vue";
 import { reactive, ref, watch } from "vue";
 import logo from "@images/logo.png";
 import currency from "../../helpers/currency";
@@ -319,6 +320,9 @@ defineOptions({ layout: Layout });
                         </el-button>
                     </div>
                 </div>
+            </div>
+            <div class="mt-5">
+                <Pagination :links="memberships.links" />
             </div>
         </el-card>
 

@@ -41,7 +41,7 @@ class MembershipController extends Controller
             });
         }
 
-        $memberships = $query->paginate(9);
+        $memberships = $query->paginate(6);
 
         return Inertia::render('memberships/Index', [
             'memberships' => $memberships,
