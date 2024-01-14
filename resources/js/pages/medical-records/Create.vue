@@ -44,7 +44,7 @@ const handleSubmit = () => {
         onError: (response) => {
             if (response?.statusCode == 502) {
                 ElMessage({
-                    type: "success",
+                    type: "error",
                     message: response?.error ?? "",
                     duration: 7500,
                 });
