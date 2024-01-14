@@ -38,6 +38,7 @@ const handleSubmit = () => {
             ElMessage({
                 type: "success",
                 message: "Berhasil menambahkan data.",
+                duration: 7500,
             });
         },
         onError: (response) => {
@@ -45,7 +46,7 @@ const handleSubmit = () => {
                 ElMessage({
                     type: "success",
                     message: response?.error ?? "",
-                    delay: 5000,
+                    duration: 7500,
                 });
             }
         },

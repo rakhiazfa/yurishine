@@ -90,7 +90,7 @@ class MedicalRecordController extends Controller
                     if ($skincare->stock > 0) {
                         DB::table('skincares')->where('id', $skincare->id)->decrement('stock');
                     } else {
-                        throw new BadRequestHttpException('Stock telah kosong untuk produk dengan nama ' . $skincare->name);
+                        throw new BadRequestHttpException('Stock telah kosong untuk produk dengan nama ( ' . $skincare->name . ' ) ');
                     }
                 }
 
