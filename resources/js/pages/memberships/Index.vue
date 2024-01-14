@@ -280,7 +280,7 @@ defineOptions({ layout: Layout });
                                 </span>
                             </div>
 
-                            <div class="absolute bottom-5 left-5 text-left">
+                            <div class="absolute bottom-20 left-5 text-left">
                                 <span
                                     class="block text-xs font-medium uppercase mb-1"
                                 >
